@@ -1,0 +1,108 @@
+package gmtl;
+
+message Color {
+  required float hue = 1;
+  required float saturation = 2;
+  required float value = 3;    
+}
+message Attacker {
+  required float power = 1;
+}
+message Container {
+  required int32 size = 1;
+  required int32 inventory_size = 2;
+  repeated Actor actor = 3;
+}
+enum DestructibleType {
+  MONSTER = 0;
+  PLAYER = 1;
+}
+message Destructible {
+  required DestructibleType destructible_type = 1;
+  required float max_hp = 2;
+  required float hp = 3;
+  required float defense = 4;
+  required string corpse_name = 5;
+}
+enum PickableType {
+  HEALER = 0;
+  LIGHTNING_BOLT = 1;
+  CONFUSER = 2;
+  FIREBALL = 3;
+}
+message Healer {
+  required float amount = 1;
+}
+message LightningBolt {
+  required float range = 1;
+  required float damage = 2;
+}
+message Confuser {
+  required int32 nb_turns = 1;
+  required float range = 2;
+}
+message Fireball {
+  required float range = 1;
+  required float damage = 2;
+}
+message Pickable {
+  required PickableType type = 1;
+  optional Healer healer = 2;
+  optional LightningBolt lightning_bolt = 3;
+  optional Confuser confuser = 4;
+  optional Fireball fireball = 5;
+}
+enum AiType {
+  MONSTER_AI = 0;
+  CONFUSED_MONSTER_AI = 1;
+  PLAYER_AI = 2; 
+}
+message MonsterAi {
+  required int32 move_count = 1;
+}
+message ConfusedMonsterAi {
+  required int32 nbTurns = 1;
+  required Ai old_ai = 2;
+}
+message Ai {
+  required AiType type = 1;
+  optional MonsterAi monster_ai = 2;
+  optional ConfusedMonsterAi confused_monster_ai = 3;
+}
+message Actor {
+  required int32 x = 1;
+  required int32 y = 2;
+  required int32 ch = 3;
+  required Color color = 4;
+  required string name = 5;
+  required int32 blocks = 6;
+  optional Attacker attacker = 7;
+  optional Container container = 8;
+  optional Destructible destructible = 9;
+  optional Pickable pickable = 10;
+}
+message Log {
+  required string text = 1;
+  required Color color = 2; 
+}
+message Game {
+  message Map {
+    required int32 width = 1;
+    required int32 height = 2;
+    required int32 seed = 3;
+    repeated int32 explored_tile = 4;
+  }
+  message Player {
+    required Actor actor = 1;
+  }
+  message Actors {
+    repeated Actor actor = 1;
+  }
+  message Logs {
+    repeated Log log = 1;
+  }
+  required Map map = 1;
+  required Player player = 2;
+  required Actors actors = 3;
+  required Logs logs = 4;
+}
