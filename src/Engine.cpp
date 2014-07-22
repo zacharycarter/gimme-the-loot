@@ -21,7 +21,7 @@ Engine::~Engine() {
 }
 
 void Engine::init() {
-    player = new Actor(40,25,'@',"player",TCODColor::white);
+    // player = new Actor(40,25,'@',"player",TCODColor::white);
     player->destructible=new PlayerDestructible(30,2,"your cadaver");
     player->attacker=new Attacker(5);
     player->ai = new PlayerAi();
@@ -141,6 +141,8 @@ void Engine::load() {
   }
   map = new Map(saveGame.map().width(), saveGame.map().height());
   map->load(&saveGame);
+  player=new Actor(0,0,0,NULL,TCODColor::white);
+  player->load(&saveGame);
     //engine.init();
     // } else {
   engine.init();
@@ -153,7 +155,7 @@ void Engine::save() {
   } else {
     gmtl::Game saveGame;
     map->save(&saveGame);
-    // player->save(saveGame);
+    player->save(&saveGame);
     // for (Actor **it = actors.begin(); it != actors.end(); it++) {
     // if (*it != player) {
     // actor->save(saveGame);
