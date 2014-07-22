@@ -128,6 +128,25 @@ void Map::render() const {
 
 }
 
+void Map::save(gmtl::Game *saveGame) {
+  gmtl::Game_Map *gameMap = saveGame->mutable_map();
+  gameMap->set_width(width);
+  gameMap->set_height(height);
+  gameMap->set_seed(seed);
+  for (int i = 0; i < width * height; i++) {
+    gameMap->add_explored_tile(tiles[i].explored);
+  }
+}
+
+void Map::load(gmtl::Game *saveGame) {
+  gmtl::Game_Map gameMap = saveGame->map();
+  seed = gameMap.seed();
+  init(false);
+  for (int i = 0; i < width * height; i++) {
+    tiles[i].explored = gameMap.explored_tile(i);
+  }
+}
+
 void Map::dig(int x1, int y1, int x2, int y2) {
     if ( x2 < x1 ) {
         int tmp=x2;

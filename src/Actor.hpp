@@ -2,6 +2,7 @@
 #define ACTOR_HPP
 
 #include "libtcod.hpp"
+#include "gmtl.pb.h"
 
 class Attacker;
 class Destructible;
@@ -25,6 +26,8 @@ public :
   ~Actor();
   void update();
   void render() const;
+  void save(gmtl::Game *game);
+  void load();
   float getDistance(int cx, int cy) const;
 };
 

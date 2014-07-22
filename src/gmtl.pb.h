@@ -2025,7 +2025,7 @@ class Game : public ::google::protobuf::Message {
   inline ::gmtl::Game_Map* release_map();
   inline void set_allocated_map(::gmtl::Game_Map* map);
 
-  // required .gmtl.Game.Player player = 2;
+  // optional .gmtl.Game.Player player = 2;
   inline bool has_player() const;
   inline void clear_player();
   static const int kPlayerFieldNumber = 2;
@@ -2034,7 +2034,7 @@ class Game : public ::google::protobuf::Message {
   inline ::gmtl::Game_Player* release_player();
   inline void set_allocated_player(::gmtl::Game_Player* player);
 
-  // required .gmtl.Game.Actors actors = 3;
+  // optional .gmtl.Game.Actors actors = 3;
   inline bool has_actors() const;
   inline void clear_actors();
   static const int kActorsFieldNumber = 3;
@@ -2043,7 +2043,7 @@ class Game : public ::google::protobuf::Message {
   inline ::gmtl::Game_Actors* release_actors();
   inline void set_allocated_actors(::gmtl::Game_Actors* actors);
 
-  // required .gmtl.Game.Logs logs = 4;
+  // optional .gmtl.Game.Logs logs = 4;
   inline bool has_logs() const;
   inline void clear_logs();
   static const int kLogsFieldNumber = 4;
@@ -3658,7 +3658,7 @@ inline void Game::set_allocated_map(::gmtl::Game_Map* map) {
   }
 }
 
-// required .gmtl.Game.Player player = 2;
+// optional .gmtl.Game.Player player = 2;
 inline bool Game::has_player() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -3696,7 +3696,7 @@ inline void Game::set_allocated_player(::gmtl::Game_Player* player) {
   }
 }
 
-// required .gmtl.Game.Actors actors = 3;
+// optional .gmtl.Game.Actors actors = 3;
 inline bool Game::has_actors() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -3734,7 +3734,7 @@ inline void Game::set_allocated_actors(::gmtl::Game_Actors* actors) {
   }
 }
 
-// required .gmtl.Game.Logs logs = 4;
+// optional .gmtl.Game.Logs logs = 4;
 inline bool Game::has_logs() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }

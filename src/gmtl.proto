@@ -102,7 +102,7 @@ message Game {
     repeated Log log = 1;
   }
   required Map map = 1;
-  required Player player = 2;
-  required Actors actors = 3;
-  required Logs logs = 4;
+  optional Player player = 2;
+  optional Actors actors = 3;
+  optional Logs logs = 4;
 }

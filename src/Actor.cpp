@@ -33,6 +33,18 @@ void Actor::update() {
 	if ( ai ) ai->update(this);
 }
 
+void Actor::save(gmtl::Game *game) {
+  // gmtl::Game_Actors *gameActors = saveGame->mutable_actors();
+  // gmtl::Actor *actor = new gmtl::Actor();
+  // actor->set_x(x);
+  // actor->set_y(y);
+  // actor->set_ch(ch);
+}
+
+void Actor::load() {
+
+}
+
 float Actor::getDistance(int cx, int cy) const {
   int dx = x - cx;
   int dy = y - cy;

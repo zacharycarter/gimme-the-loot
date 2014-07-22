@@ -2,6 +2,7 @@
 #define MAP_HPP
 
 #include "libtcod.hpp"
+#include "gmtl.pb.h"
 
 struct Tile {
     bool explored; // been seen by player?
@@ -10,17 +11,19 @@ struct Tile {
  
 class Map {
 public :
-    int width,height;
+  int width,height;
  
-    Map(int width, int height);
-    ~Map();
+  Map(int width, int height);
+  ~Map();
   void init(bool withActors);
-    bool isWall(int x, int y) const;
-    bool isInFov(int x, int y) const;
-    bool isExplored(int x, int y) const;
-    bool canWalk(int x, int y) const;
-    void computeFov();
-    void render() const;
+  bool isWall(int x, int y) const;
+  bool isInFov(int x, int y) const;
+  bool isExplored(int x, int y) const;
+  bool canWalk(int x, int y) const;
+  void computeFov();
+  void render() const;
+  void save(gmtl::Game *game);
+  void load(gmtl::Game *game);
 protected :
   Tile *tiles;
   TCODMap *map;

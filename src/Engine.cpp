@@ -27,8 +27,8 @@ void Engine::init() {
     player->ai = new PlayerAi();
     player->container = new Container(26);
     actors.push(player);
-    map = new Map(80,43);
-    map->init(true);
+    // map = new Map(80,43);
+    // map->init(true);
     gui->message(TCODColor::red,"Welcome!");
 }
 
@@ -133,20 +133,35 @@ Actor *Engine::getActor(int x, int y) const {
 }
 
 void Engine::load() {
+  // if (TCODSystem::fileExists("gmtl.bin")) {
+  gmtl::Game saveGame;
+  fstream input("gmtl.bin", ios::in | ios::binary);
+  if (!saveGame.ParseFromIstream(&input)) {
+    cerr << "Failed to load game." << endl;
+  }
+  map = new Map(saveGame.map().width(), saveGame.map().height());
+  map->load(&saveGame);
+    //engine.init();
+    // } else {
   engine.init();
+    //}
 }
 
 void Engine::save() {
   if (player->destructible->isDead()) {
     TCODSystem::deleteFile("gmtl.bin");
   } else {
-    gmtl::Game game;
-    gmtl::Game_Map *gameMap = new gmtl::Game_Map();
-    gameMap->set_width(map->width);
-    gameMap->set_height(map->height);
-    game.set_allocated_map(gameMap);
+    gmtl::Game saveGame;
+    map->save(&saveGame);
+    // player->save(saveGame);
+    // for (Actor **it = actors.begin(); it != actors.end(); it++) {
+    // if (*it != player) {
+    // actor->save(saveGame);
+    // }
+    // }
+    // gui->save(saveGame);
     fstream output("gmtl.bin", ios::out | ios::trunc | ios::binary);
-    if (!game.SerializeToOstream(&output)) {
+    if (!saveGame.SerializeToOstream(&output)) {
       cerr << "Failed to write save game." << endl;
       return;
     }

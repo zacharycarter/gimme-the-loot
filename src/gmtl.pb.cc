@@ -544,9 +544,9 @@ void protobuf_AddDesc_gmtl_2eproto() {
     "\001(\0132\022.gmtl.Destructible\022 \n\010pickable\030\n \001("
     "\0132\016.gmtl.Pickable\"/\n\003Log\022\014\n\004text\030\001 \002(\t\022\032"
     "\n\005color\030\002 \002(\0132\013.gmtl.Color\"\277\002\n\004Game\022\033\n\003m"
-    "ap\030\001 \002(\0132\016.gmtl.Game.Map\022!\n\006player\030\002 \002(\013"
-    "2\021.gmtl.Game.Player\022!\n\006actors\030\003 \002(\0132\021.gm"
-    "tl.Game.Actors\022\035\n\004logs\030\004 \002(\0132\017.gmtl.Game"
+    "ap\030\001 \002(\0132\016.gmtl.Game.Map\022!\n\006player\030\002 \001(\013"
+    "2\021.gmtl.Game.Player\022!\n\006actors\030\003 \001(\0132\021.gm"
+    "tl.Game.Actors\022\035\n\004logs\030\004 \001(\0132\017.gmtl.Game"
     ".Logs\032I\n\003Map\022\r\n\005width\030\001 \002(\005\022\016\n\006height\030\002 "
     "\002(\005\022\014\n\004seed\030\003 \002(\005\022\025\n\rexplored_tile\030\004 \003(\005"
     "\032$\n\006Player\022\032\n\005actor\030\001 \002(\0132\013.gmtl.Actor\032$"
@@ -5928,7 +5928,7 @@ bool Game::MergePartialFromCodedStream(
         break;
       }
 
-      // required .gmtl.Game.Player player = 2;
+      // optional .gmtl.Game.Player player = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -5942,7 +5942,7 @@ bool Game::MergePartialFromCodedStream(
         break;
       }
 
-      // required .gmtl.Game.Actors actors = 3;
+      // optional .gmtl.Game.Actors actors = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -5956,7 +5956,7 @@ bool Game::MergePartialFromCodedStream(
         break;
       }
 
-      // required .gmtl.Game.Logs logs = 4;
+      // optional .gmtl.Game.Logs logs = 4;
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -5994,19 +5994,19 @@ void Game::SerializeWithCachedSizes(
       1, this->map(), output);
   }
 
-  // required .gmtl.Game.Player player = 2;
+  // optional .gmtl.Game.Player player = 2;
   if (has_player()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2, this->player(), output);
   }
 
-  // required .gmtl.Game.Actors actors = 3;
+  // optional .gmtl.Game.Actors actors = 3;
   if (has_actors()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       3, this->actors(), output);
   }
 
-  // required .gmtl.Game.Logs logs = 4;
+  // optional .gmtl.Game.Logs logs = 4;
   if (has_logs()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       4, this->logs(), output);
@@ -6027,21 +6027,21 @@ void Game::SerializeWithCachedSizes(
         1, this->map(), target);
   }
 
-  // required .gmtl.Game.Player player = 2;
+  // optional .gmtl.Game.Player player = 2;
   if (has_player()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         2, this->player(), target);
   }
 
-  // required .gmtl.Game.Actors actors = 3;
+  // optional .gmtl.Game.Actors actors = 3;
   if (has_actors()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         3, this->actors(), target);
   }
 
-  // required .gmtl.Game.Logs logs = 4;
+  // optional .gmtl.Game.Logs logs = 4;
   if (has_logs()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -6066,21 +6066,21 @@ int Game::ByteSize() const {
           this->map());
     }
 
-    // required .gmtl.Game.Player player = 2;
+    // optional .gmtl.Game.Player player = 2;
     if (has_player()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->player());
     }
 
-    // required .gmtl.Game.Actors actors = 3;
+    // optional .gmtl.Game.Actors actors = 3;
     if (has_actors()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->actors());
     }
 
-    // required .gmtl.Game.Logs logs = 4;
+    // optional .gmtl.Game.Logs logs = 4;
     if (has_logs()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -6143,7 +6143,7 @@ void Game::CopyFrom(const Game& from) {
 }
 
 bool Game::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
+  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
 
   if (has_map()) {
     if (!this->map().IsInitialized()) return false;
