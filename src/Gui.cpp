@@ -21,14 +21,15 @@ Gui::~Gui() {
 void Gui::render() {
 	// clear the GUI console
 	con->setDefaultBackground(TCODColor::black);
-	con->clear();
+	con->clear();s
+
 
 	// draw the health bar
 	renderBar(1,1,BAR_WIDTH,"HP",engine.player->destructible->hp,
 		engine.player->destructible->maxHp,
 		TCODColor::lightRed,TCODColor::darkerRed);
 
-	// draw the message log
+	// draw the messsage log
 	int y=1;
 	float colorCoef=0.4f;
 	for (LogEntry **it=log.begin(); it != log.end(); it++) {

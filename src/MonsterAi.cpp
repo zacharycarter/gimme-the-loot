@@ -55,7 +55,8 @@ void MonsterAi::load(const gmtl::Ai ai) {
 
 void MonsterAi::save(gmtl::Ai *ai) {
   ai->set_type(gmtl::AiType::MONSTER_AI);
-  ai->set_move_count(moveCount);
+  gmtl::MonsterAi *monsterAi = ai->mutable_monster_ai();
+  monsterAi->set_move_count(moveCount);
 }
 
 ConfusedMonsterAi::ConfusedMonsterAi(int nbTurns, Ai *oldAi)

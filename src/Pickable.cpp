@@ -32,3 +32,23 @@ void Pickable::drop(Actor *owner, Actor *wearer) {
 			wearer->name,owner->name);
   }
 }
+
+Pickable pickable *create(const gmtl::Pickable pickable) {
+  Pickable *tempPickable = NULL;
+  switch(pickable.type()) {
+  case gmtl::PickableType::HEALER :
+    if (pickable.has_healer()) tempPickable = new Healer(0);
+    break;
+  case gmtl::PickableType::LIGHTNING_BOLT :
+    if (pickable.has_lightning_bolt()) tempPickable = new LightningBolt(0,0);
+    break;
+  case gmtl::PickableType::CONFUSER :
+    if (pickable.has_confuser()) tempPickable = new Confuser(0,0);
+    break;
+  case gmtl::PickableType::FIREBALL :
+    if (pickable.has_fireball()) tempPickable = new Fireball(0,0);
+    break;
+  }
+  tempPickable->load(ai);
+  return tempPickable;
+}
