@@ -7,6 +7,7 @@ class Ai {
 public:
   virtual ~Ai();
   virtual void update(Actor *owner) = 0;
+  static Ai *create(gmtl::Ai ai);
 };
 
 inline Ai::~Ai() { } 

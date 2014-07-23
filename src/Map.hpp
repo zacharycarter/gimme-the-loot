@@ -22,8 +22,8 @@ public :
   bool canWalk(int x, int y) const;
   void computeFov();
   void render() const;
-  void save(gmtl::Game *game);
-  void load(gmtl::Game *game);
+  void save(gmtl::Game_Map *gameMap);
+  void load(const gmtl::Game_Map gameMap);
 protected :
   Tile *tiles;
   TCODMap *map;

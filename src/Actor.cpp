@@ -35,13 +35,8 @@ void Actor::update() {
 	if ( ai ) ai->update(this);
 }
 
-void Actor::save(gmtl::Game *saveGame) {
-  gmtl::Game_Actors *gameActors = saveGame->mutable_actors();
-  gmtl::Actor *actor = gameActors->add_actor();
-  engine.gui->message(TCODColor::lightGrey,
-		      "Saving actor x : %d", x);
+void Actor::save(gmtl::Actor *actor) {
   actor->set_x(x);
-  printf("Saving actor y : %d", y);
   actor->set_y(y);
   actor->set_ch(ch);
   
@@ -54,19 +49,46 @@ void Actor::save(gmtl::Game *saveGame) {
   
   actor->set_name(name);
   actor->set_blocks(blocks);
+
+  if (attacker) attacker->save(actor->mutable_attacker());
+  if (destructible) destructible->save(actor->mutable_destructible());
+  if (ai) ai->save(actor->mutable_ai());
+  if (pickable) pickable->save(actor->mutable_pickable());
+  if (container) container->save(actor->mutable_container());
 }
 
-void Actor::load(gmtl::Game *saveGame) {
-  gmtl::Actor actor = saveGame->player().actor();
+void Actor::load(const gmtl::Actor actor) {
+  const gmtl::Color color = actor.color();
   x = actor.x();
-  engine.gui->message(TCODColor::lightGrey,
+  engine.gui->logEntry(TCODColor::lightGrey,
 			  "Loaded actor x : %d", x);
   y = actor.y();
   ch = actor.ch();
-  col = TCODColor::black;
-  col.setHSV(actor.color().hue(), actor.color().saturation(), actor.color().value());
+  col.setHSV(color.hue(), color.saturation(), color.value());
   name = actor.name().c_str();
   blocks = actor.blocks();
+
+  if (actor.has_attacker()) {
+    attacker = new Attacker(0.0f);
+    attacker->load(actor.attacker());
+  }
+
+  if (actor.has_destructible()) {
+    destructible = Destructible::create(actor.destructible());
+  }
+
+  if (actor.has_ai()) {
+    ai = Ai::create(actor.ai());
+  }
+
+  if (actor.has_pickable()) {
+    pickable = Pickable::create(actor.pickable());
+  }
+
+  if (actor.has_container()) {
+    container = new Container(0);
+    container->load(actor.container());
+  }
 }
 
 float Actor::getDistance(int cx, int cy) const {

@@ -16,6 +16,9 @@ public:
   float takeDamage(Actor *owner, float damage);
   float heal(float amount);
   virtual void die(Actor *owner);
+  void save(gmtl::Destructible *destructible);
+  void load(const gmtl::Destructible destructible);
+  static Destructible *create(gmtl::Destructible destructible);
 };
 
 #endif

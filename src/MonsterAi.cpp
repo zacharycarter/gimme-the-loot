@@ -49,6 +49,15 @@ void MonsterAi::moveOrAttack(Actor *owner, int targetx, int targety) {
   }
 }
 
+void MonsterAi::load(const gmtl::Ai ai) {
+  moveCount = ai.monster_ai.move_count;
+}
+
+void MonsterAi::save(gmtl::Ai *ai) {
+  ai->set_type(gmtl::AiType::MONSTER_AI);
+  ai->set_move_count(moveCount);
+}
+
 ConfusedMonsterAi::ConfusedMonsterAi(int nbTurns, Ai *oldAi)
   : nbTurns(nbTurns),oldAi(oldAi) {
 }
@@ -78,4 +87,15 @@ void ConfusedMonsterAi::update(Actor *owner) {
     owner->ai = oldAi;
     delete this;
   }
+}
+
+void ConfusedMonsterAi::load(gmtl::Ai ai) {
+  nbTurns = ai.confused_monster_ai().nbTurns();
+  oldAi = Ai::create(ai.confused_monster_ai().old_ai();
+}
+
+void ConfusedMonsterAi::save(gmtl::Ai *ai) {
+  ai->set_type(gmtl::AiType::CONFUSED_MONSTER_AI);
+  gmtl::ConfusedMonsterAi *confusedMonsterAi = ai->mutable_confused_monster_ai();
+  confusedMonsterAi->set_old_ai(Ai::save(mutable_old_ai());
 }

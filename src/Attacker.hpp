@@ -8,6 +8,8 @@ public:
   float power;
   Attacker(float power);
   void attack(Actor *owner, Actor *target);
+  void save(gmtl::Attacker *attacker);
+  void load(const gmtl::Attacker attacker);
 };
 
 #endif

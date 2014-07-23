@@ -31,10 +31,10 @@ void Gui::render() {
 	// draw the message log
 	int y=1;
 	float colorCoef=0.4f;
-	for (Message **it=log.begin(); it != log.end(); it++) {
-		Message *message=*it;
-		con->setDefaultForeground(message->col * colorCoef);
-		con->print(MSG_X,y,message->text);
+	for (LogEntry **it=log.begin(); it != log.end(); it++) {
+		LogEntry *logEntry=*it;
+		con->setDefaultForeground(logEntry->col * colorCoef);
+		con->print(MSG_X,y,logEntry->text);
 		y++;
 		if ( colorCoef < 1.0f ) {
 			colorCoef+=0.3f;
@@ -68,11 +68,11 @@ void Gui::renderBar(int x, int y, int width, const char *name,
 		"%s : %g/%g", name, value, maxValue);
 }
 
-Gui::Message::Message(const char *text, const TCODColor &col) :
+Gui::LogEntry::LogEntry(const char *text, const TCODColor &col) :
 	text(strdup(text)),col(col) {	
 }
 
-Gui::Message::~Message() {
+Gui::LogEntry::~LogEntry() {
 	free(text);
 }
 
@@ -100,7 +100,7 @@ void Gui::renderMouseLook() {
 	con->print(1,0,buf);
 }
 
-void Gui::message(const TCODColor &col, const char *text, ...) {
+void Gui::logEntry(const TCODColor &col, const char *text, ...) {
 	// build the text
 	va_list ap;
 	char buf[128];
@@ -113,7 +113,7 @@ void Gui::message(const TCODColor &col, const char *text, ...) {
 	do {
 		// make room for the new message
 		if ( log.size() == MSG_HEIGHT ) {
-			Message *toRemove=log.get(0);
+			LogEntry *toRemove=log.get(0);
 			log.remove(toRemove);
 			delete toRemove;
 		}
@@ -125,10 +125,27 @@ void Gui::message(const TCODColor &col, const char *text, ...) {
 		}
 
 		// add a new message to the log
-		Message *msg=new Message(lineBegin, col);
-		log.push(msg);
+		LogEntry *logEntry=new LogEntry(lineBegin, col);
+		log.push(logEntry);
 
 		// go to next line
 		lineBegin=lineEnd+1;
 	} while ( lineEnd );
+}
+
+void Gui::save(gmtl::Game_Logs *gameLogs) {
+  for (Gui::LogEntry **it = log.begin(); it != log.end(); it++) {
+    gmtl::Log *gameLog = gameLogs->add_log();
+    gmtl::Color *color = gameLog->mutable_color();
+    float h,s,v;
+    (*it)->col.getHSV(&h,&s,&v);
+    color->set_hue(h);
+    color->set_saturation(s);
+    color->set_value(v);
+    gameLog->set_text((*it)->text);
+  }
+}
+
+void Gui::load(const gmtl::Game_Logs gameLogs) {
+
 }

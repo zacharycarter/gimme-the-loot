@@ -7,7 +7,7 @@ Confuser::Confuser(int nbTurns, float range)
 }
 
 bool Confuser::use(Actor *owner, Actor *wearer) {
-  engine.gui->message(TCODColor::cyan, 
+  engine.gui->logEntry(TCODColor::cyan, 
 		      "Left-click an enemy to confuse it, \nor right-click to cancel.");
   int x,y;
   if (!engine.pickATile(&x,&y,range)) {
@@ -19,7 +19,7 @@ bool Confuser::use(Actor *owner, Actor *wearer) {
   }
   Ai *confusedAi = new ConfusedMonsterAi(nbTurns, actor->ai);
   actor->ai = confusedAi;
-  engine.gui->message(TCODColor::lightGreen,"The eyes of the %s look vacant, \nas they begin to stumble.",
+  engine.gui->logEntry(TCODColor::lightGreen,"The eyes of the %s look vacant, \nas they begin to stumble.",
 		     actor->name);
   return Pickable::use(owner,wearer);
 }

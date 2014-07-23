@@ -26,8 +26,8 @@ public :
   ~Actor();
   void update();
   void render() const;
-  void save(gmtl::Game *saveGame);
-  void load(gmtl::Game *saveGame);
+  void save(gmtl::Actor *actor);
+  void load(const gmtl::Actor actor);
   float getDistance(int cx, int cy) const;
 };
 

@@ -37,3 +37,32 @@ void Destructible::die(Actor *owner) {
   owner->blocks=false;
   engine.sendToBack(owner);
 }
+
+void Destructible::save(gmtl::Destructible *destructible) {
+  destructible->set_max_hp(maxHp);
+  destructible->set_hp(hp);
+  destructible->set_defense(defense);
+  destructible->set_corpse_name(corpseName);
+}
+
+void Destructible::load(const gmtl::Destructible destructible) {
+  maxHp = destructible.max_hp();
+  hp = destructible.hp();
+  defense = destructible.defense();
+  corpseName = destructible.corpseName();
+}
+
+Destructible *Destructible::create(gmtl::Destructible destructible) {
+  DestructibleType type=(DestructibleType)destructible.destructible_type();
+  Destructible *destructible=NULL;
+  switch(type) {
+  case gmtl::DestructibleType::MONSTER : 
+    destructible=new MonsterDestructible(0,0,NULL); 
+    break;
+  case gmtl::DestructibleType::PLAYER : 
+    destructible=new PlayerDestructible(0,0,NULL); 
+    break;
+  }
+  destructible->load(destructible);
+  return destructible;
+}

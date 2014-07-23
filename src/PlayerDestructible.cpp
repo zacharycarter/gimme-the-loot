@@ -7,7 +7,12 @@ PlayerDestructible::PlayerDestructible(float maxHp, float defense, const char *c
 }
 
 void PlayerDestructible::die(Actor *owner) {
-  engine.gui->message(TCODColor::red,"You died!");
+  engine.gui->logEntry(TCODColor::red,"You died!");
   Destructible::die(owner);
   engine.gameStatus=Engine::DEFEAT;
+}
+
+void PlayerDestructible::save(gmtl::Destructible *destructible) {
+  destructible->set_destructible_type(gmtl::DestructibleType::PLAYER);
+  Destructible::save(destructible);
 }

@@ -28,7 +28,7 @@ void Pickable::drop(Actor *owner, Actor *wearer) {
     engine.actors.push(owner);
     owner->x = wearer->x;
     owner->y = wearer->y;
-    engine.gui->message(TCODColor::lightGrey, "%s drops a %s.",
+    engine.gui->logEntry(TCODColor::lightGrey, "%s drops a %s.",
 			wearer->name,owner->name);
   }
 }

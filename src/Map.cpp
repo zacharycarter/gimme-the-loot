@@ -128,8 +128,7 @@ void Map::render() const {
 
 }
 
-void Map::save(gmtl::Game *saveGame) {
-  gmtl::Game_Map *gameMap = saveGame->mutable_map();
+void Map::save(gmtl::Game_Map *gameMap) {
   gameMap->set_width(width);
   gameMap->set_height(height);
   gameMap->set_seed(seed);
@@ -138,8 +137,7 @@ void Map::save(gmtl::Game *saveGame) {
   }
 }
 
-void Map::load(gmtl::Game *saveGame) {
-  gmtl::Game_Map gameMap = saveGame->map();
+void Map::load(const gmtl::Game_Map gameMap) {
   seed = gameMap.seed();
   init(false);
   for (int i = 0; i < width * height; i++) {
