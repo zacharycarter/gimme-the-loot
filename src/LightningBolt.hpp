@@ -9,5 +9,7 @@ public:
   float range, damage;
   LightningBolt(float range, float damage);
   bool use(Actor *owner, Actor *wearer);
+  void load(const gmtl::LightningBolt lightningBolt);
+  void save(gmtl::LightningBolt *lightningBolt);
 };
 #endif
