@@ -14,10 +14,15 @@ Engine::Engine(int screenWidth, int screenHeight) : gameStatus(STARTUP),fovRadiu
 }
 
 Engine::~Engine() {
-    actors.clearAndDelete();
-    delete map;
-    delete gui;
-    google::protobuf::ShutdownProtobufLibrary();
+  reinit();
+  delete gui;
+  google::protobuf::ShutdownProtobufLibrary();
+}
+
+void Engine::reinit() {
+  actors.clearAndDelete();
+  if (map) delete map;
+  gui->clear();
 }
 
 void Engine::init() {
@@ -30,12 +35,17 @@ void Engine::init() {
   map = new Map(80,43);
   map->init(true);
   gui->logEntry(TCODColor::red,"Welcome!");
+  gameStatus = STARTUP;
 }
 
 void Engine::update() {
   if ( gameStatus == STARTUP ) map->computeFov();
   gameStatus=IDLE;
   TCODSystem::checkForEvent(TCOD_EVENT_KEY_PRESS|TCOD_EVENT_MOUSE,&lastKey,&mouse);
+  if ( lastKey.vk == TCODK_ESCAPE ) {
+    save();
+    load();
+  }
   player->update();
   if ( gameStatus == NEW_TURN ) {
     for (Actor **iterator=actors.begin(); iterator != actors.end();
@@ -133,9 +143,22 @@ Actor *Engine::getActor(int x, int y) const {
 }
 
 void Engine::load() {
+  engine.gui->menu.clear();
+  engine.gui->menu.addItem(Menu::NEW_GAME,"New Game");
   if (TCODSystem::fileExists("gmtl.bin")) {
+    engine.gui->menu.addItem(Menu::CONTINUE,"Continue");
+  }
+  engine.gui->menu.addItem(Menu::EXIT, "Exit");
+
+  Menu::MenuItemCode menuItem = engine.gui->menu.pick();
+  if (menuItem == Menu::EXIT || menuItem == Menu::NONE) {
+    exit(0);
+  } else if (menuItem == Menu::NEW_GAME) {
+    engine.reinit();
+    engine.init(); 
+  } else {
     gmtl::Game saveGame;
-    
+    engine.reinit();
     fstream input("gmtl.bin", ios::in | ios::binary);
     if (!saveGame.ParseFromIstream(&input)) {
       cerr << "Failed to load game." << endl;
@@ -153,8 +176,7 @@ void Engine::load() {
       actors.push(actor);
     }
     gui->load(saveGame.logs());
-  } else {
-    engine.init();
+    gameStatus = STARTUP;
   }
 }
 

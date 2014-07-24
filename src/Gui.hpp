@@ -3,13 +3,16 @@
 
 #include "libtcod.hpp"
 #include "gmtl.pb.h"
+#include "Menu.hpp"
 
 class Gui {
 public:
+  Menu menu;
   Gui();
   ~Gui();
   void render();
   void logEntry(const TCODColor &col, const char *text, ...);
+  void clear();
   void save(gmtl::Game_Logs *gameLogs);
   void load(const gmtl::Game_Logs gameLogs);
 protected:

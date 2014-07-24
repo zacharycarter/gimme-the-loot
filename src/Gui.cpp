@@ -10,12 +10,16 @@ static const int MSG_X=BAR_WIDTH+2;
 static const int MSG_HEIGHT=PANEL_HEIGHT-1;
 
 Gui::Gui() {
-	con = new TCODConsole(engine.screenWidth,PANEL_HEIGHT);
+  con = new TCODConsole(engine.screenWidth,PANEL_HEIGHT);
 }
 
 Gui::~Gui() {
-	delete con;
-	log.clearAndDelete();
+  delete con;
+  clear();
+}
+
+void Gui::clear() {
+  log.clearAndDelete();
 }
 
 void Gui::render() {

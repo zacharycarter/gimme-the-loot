@@ -34,6 +34,7 @@ public :
   Actor *getClosestMonster(int x, int y, float range) const;
   Actor *getActor(int x, int y) const;
   void init();
+  void reinit();
   void load();
   void save();
 };
