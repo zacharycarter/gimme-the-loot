@@ -487,14 +487,14 @@ class Destructible : public ::google::protobuf::Message {
   inline float defense() const;
   inline void set_defense(float value);
 
-  // required string corpse_name = 5;
+  // required bytes corpse_name = 5;
   inline bool has_corpse_name() const;
   inline void clear_corpse_name();
   static const int kCorpseNameFieldNumber = 5;
   inline const ::std::string& corpse_name() const;
   inline void set_corpse_name(const ::std::string& value);
   inline void set_corpse_name(const char* value);
-  inline void set_corpse_name(const char* value, size_t size);
+  inline void set_corpse_name(const void* value, size_t size);
   inline ::std::string* mutable_corpse_name();
   inline ::std::string* release_corpse_name();
   inline void set_allocated_corpse_name(::std::string* corpse_name);
@@ -1386,14 +1386,14 @@ class Actor : public ::google::protobuf::Message {
   inline ::gmtl::Color* release_color();
   inline void set_allocated_color(::gmtl::Color* color);
 
-  // required string name = 5;
+  // required bytes name = 5;
   inline bool has_name() const;
   inline void clear_name();
   static const int kNameFieldNumber = 5;
   inline const ::std::string& name() const;
   inline void set_name(const ::std::string& value);
   inline void set_name(const char* value);
-  inline void set_name(const char* value, size_t size);
+  inline void set_name(const void* value, size_t size);
   inline ::std::string* mutable_name();
   inline ::std::string* release_name();
   inline void set_allocated_name(::std::string* name);
@@ -1441,6 +1441,15 @@ class Actor : public ::google::protobuf::Message {
   inline ::gmtl::Pickable* release_pickable();
   inline void set_allocated_pickable(::gmtl::Pickable* pickable);
 
+  // optional .gmtl.Ai ai = 11;
+  inline bool has_ai() const;
+  inline void clear_ai();
+  static const int kAiFieldNumber = 11;
+  inline const ::gmtl::Ai& ai() const;
+  inline ::gmtl::Ai* mutable_ai();
+  inline ::gmtl::Ai* release_ai();
+  inline void set_allocated_ai(::gmtl::Ai* ai);
+
   // @@protoc_insertion_point(class_scope:gmtl.Actor)
  private:
   inline void set_has_x();
@@ -1463,6 +1472,8 @@ class Actor : public ::google::protobuf::Message {
   inline void clear_has_destructible();
   inline void set_has_pickable();
   inline void clear_has_pickable();
+  inline void set_has_ai();
+  inline void clear_has_ai();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -1476,9 +1487,10 @@ class Actor : public ::google::protobuf::Message {
   ::gmtl::Container* container_;
   ::gmtl::Destructible* destructible_;
   ::gmtl::Pickable* pickable_;
+  ::gmtl::Ai* ai_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(10 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(11 + 31) / 32];
 
   friend void  protobuf_AddDesc_gmtl_2eproto();
   friend void protobuf_AssignDesc_gmtl_2eproto();
@@ -1543,14 +1555,14 @@ class Log : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required string text = 1;
+  // required bytes text = 1;
   inline bool has_text() const;
   inline void clear_text();
   static const int kTextFieldNumber = 1;
   inline const ::std::string& text() const;
   inline void set_text(const ::std::string& value);
   inline void set_text(const char* value);
-  inline void set_text(const char* value, size_t size);
+  inline void set_text(const void* value, size_t size);
   inline ::std::string* mutable_text();
   inline ::std::string* release_text();
   inline void set_allocated_text(::std::string* text);
@@ -2345,7 +2357,7 @@ inline void Destructible::set_defense(float value) {
   defense_ = value;
 }
 
-// required string corpse_name = 5;
+// required bytes corpse_name = 5;
 inline bool Destructible::has_corpse_name() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
@@ -2378,7 +2390,7 @@ inline void Destructible::set_corpse_name(const char* value) {
   }
   corpse_name_->assign(value);
 }
-inline void Destructible::set_corpse_name(const char* value, size_t size) {
+inline void Destructible::set_corpse_name(const void* value, size_t size) {
   set_has_corpse_name();
   if (corpse_name_ == &::google::protobuf::internal::kEmptyString) {
     corpse_name_ = new ::std::string;
@@ -3065,7 +3077,7 @@ inline void Actor::set_allocated_color(::gmtl::Color* color) {
   }
 }
 
-// required string name = 5;
+// required bytes name = 5;
 inline bool Actor::has_name() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
@@ -3098,7 +3110,7 @@ inline void Actor::set_name(const char* value) {
   }
   name_->assign(value);
 }
-inline void Actor::set_name(const char* value, size_t size) {
+inline void Actor::set_name(const void* value, size_t size) {
   set_has_name();
   if (name_ == &::google::protobuf::internal::kEmptyString) {
     name_ = new ::std::string;
@@ -3309,11 +3321,49 @@ inline void Actor::set_allocated_pickable(::gmtl::Pickable* pickable) {
   }
 }
 
+// optional .gmtl.Ai ai = 11;
+inline bool Actor::has_ai() const {
+  return (_has_bits_[0] & 0x00000400u) != 0;
+}
+inline void Actor::set_has_ai() {
+  _has_bits_[0] |= 0x00000400u;
+}
+inline void Actor::clear_has_ai() {
+  _has_bits_[0] &= ~0x00000400u;
+}
+inline void Actor::clear_ai() {
+  if (ai_ != NULL) ai_->::gmtl::Ai::Clear();
+  clear_has_ai();
+}
+inline const ::gmtl::Ai& Actor::ai() const {
+  return ai_ != NULL ? *ai_ : *default_instance_->ai_;
+}
+inline ::gmtl::Ai* Actor::mutable_ai() {
+  set_has_ai();
+  if (ai_ == NULL) ai_ = new ::gmtl::Ai;
+  return ai_;
+}
+inline ::gmtl::Ai* Actor::release_ai() {
+  clear_has_ai();
+  ::gmtl::Ai* temp = ai_;
+  ai_ = NULL;
+  return temp;
+}
+inline void Actor::set_allocated_ai(::gmtl::Ai* ai) {
+  delete ai_;
+  ai_ = ai;
+  if (ai) {
+    set_has_ai();
+  } else {
+    clear_has_ai();
+  }
+}
+
 // -------------------------------------------------------------------
 
 // Log
 
-// required string text = 1;
+// required bytes text = 1;
 inline bool Log::has_text() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -3346,7 +3396,7 @@ inline void Log::set_text(const char* value) {
   }
   text_->assign(value);
 }
-inline void Log::set_text(const char* value, size_t size) {
+inline void Log::set_text(const void* value, size_t size) {
   set_has_text();
   if (text_ == &::google::protobuf::internal::kEmptyString) {
     text_ = new ::std::string;

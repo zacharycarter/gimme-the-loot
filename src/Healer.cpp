@@ -19,7 +19,7 @@ void Healer::load(const gmtl::Pickable pickable) {
 }
 
 void Healer::save(gmtl::Pickable *pickable) {
-  pickable->set_type(gmtl::PickableType::HEALER);
+  pickable->set_type(gmtl::HEALER);
   gmtl::Healer *healer = pickable->mutable_healer();
   healer->set_amount(amount);
 }

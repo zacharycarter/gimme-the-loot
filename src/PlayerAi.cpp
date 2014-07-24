@@ -149,5 +149,5 @@ void PlayerAi::load(const gmtl::Ai ai) {
 }
 
 void PlayerAi::save(gmtl::Ai *ai) {
-  ai->set_type(gmtl::AiType::PLAYER_AI);
+  ai->set_type(gmtl::PLAYER_AI);
 }

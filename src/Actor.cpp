@@ -13,12 +13,14 @@ using namespace std;
 
 Actor::Actor(int x, int y, int ch, const char *name, 
     const TCODColor &col) :
-    x(x),y(y),ch(ch),col(col),name(name),
-    blocks(true),attacker(NULL),destructible(NULL),ai(NULL),
-    pickable(NULL),container(NULL){
+  x(x),y(y),ch(ch),col(col),
+  blocks(true),attacker(NULL),destructible(NULL),ai(NULL),
+  pickable(NULL),container(NULL) {
+  if(name) this->name = strdup(name);
 }
 
 Actor::~Actor() {
+  if (name) free(name);
   if (attacker) delete attacker;
   if (destructible) delete destructible;
   if (ai) delete ai;
@@ -60,12 +62,10 @@ void Actor::save(gmtl::Actor *actor) {
 void Actor::load(const gmtl::Actor actor) {
   const gmtl::Color color = actor.color();
   x = actor.x();
-  engine.gui->logEntry(TCODColor::lightGrey,
-			  "Loaded actor x : %d", x);
-  y = actor.y();
+  y = actor.y(); 
   ch = actor.ch();
   col.setHSV(color.hue(), color.saturation(), color.value());
-  name = actor.name().c_str();
+  if(actor.name().size() > 0) name = strdup(actor.name().c_str());
   blocks = actor.blocks();
 
   if (actor.has_attacker()) {

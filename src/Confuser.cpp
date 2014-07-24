@@ -23,3 +23,15 @@ bool Confuser::use(Actor *owner, Actor *wearer) {
 		     actor->name);
   return Pickable::use(owner,wearer);
 }
+
+void Confuser::load(const gmtl::Pickable pickable) {
+  nbTurns = pickable.confuser().nb_turns();
+  range = pickable.confuser().range();
+}
+
+void Confuser::save(gmtl::Pickable *pickable) {
+  pickable->set_type(gmtl::CONFUSER);
+  gmtl::Confuser *confuser = pickable->mutable_confuser();
+  confuser->set_nb_turns(nbTurns);
+  confuser->set_range(range);
+}

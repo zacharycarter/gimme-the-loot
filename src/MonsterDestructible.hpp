@@ -8,6 +8,7 @@ class MonsterDestructible : public Destructible {
 public:
   MonsterDestructible(float maxHp, float defense, const char *corpseName);
   void die(Actor *owner);
+  void save(gmtl::Destructible *destructible);
 };
 
 #endif

@@ -18,3 +18,20 @@ bool Container::add(Actor *actor) {
 void Container::remove(Actor *actor) {
   inventory.remove(actor);
 }
+
+void Container::load(const gmtl::Container container) {
+  size = container.size();
+  for (int i = 0; i < container.actor_size(); i++) {
+    Actor *actor = new Actor(0,0,0,NULL,TCODColor::white);
+    actor->load(container.actor(i));
+    inventory.push(actor);
+  }
+}
+
+void Container::save(gmtl::Container *container) {
+  container->set_size(size);
+  container->set_inventory_size(inventory.size());
+  for (Actor **it = inventory.begin(); it != inventory.end(); it++) {
+    (*it)->save(container->add_actor());
+  }
+}

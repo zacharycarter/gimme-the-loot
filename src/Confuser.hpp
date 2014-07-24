@@ -10,5 +10,7 @@ public:
   float range;
   Confuser(int nbTurns, float range);
   bool use(Actor *owner, Actor *wearer);
+  void load(const gmtl::Pickable pickable);
+  void save(gmtl::Pickable *pickable);
 };
 #endif

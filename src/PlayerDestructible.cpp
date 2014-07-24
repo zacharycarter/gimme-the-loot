@@ -1,4 +1,3 @@
-#include "Actor.hpp"
 #include "Engine.hpp"
 #include "PlayerDestructible.hpp"
 
@@ -13,6 +12,6 @@ void PlayerDestructible::die(Actor *owner) {
 }
 
 void PlayerDestructible::save(gmtl::Destructible *destructible) {
-  destructible->set_destructible_type(gmtl::DestructibleType::PLAYER);
+  destructible->set_destructible_type(gmtl::PLAYER);
   Destructible::save(destructible);
 }

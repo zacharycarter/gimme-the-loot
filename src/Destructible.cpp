@@ -1,11 +1,15 @@
-#include "Destructible.hpp"
 #include "Engine.hpp"
+#include "MonsterDestructible.hpp"
+#include "PlayerDestructible.hpp"
+#include "Destructible.hpp"
 
 Destructible::Destructible(float maxHp, float defense, const char *corpseName) :
-  maxHp(maxHp),hp(maxHp),defense(defense),corpseName(corpseName) {
+  maxHp(maxHp),hp(maxHp),defense(defense) {
+  if(corpseName) this->corpseName = strdup(corpseName);
 }
 
 Destructible::~Destructible() {
+  if(corpseName) free(corpseName);
 }
 
 float Destructible::takeDamage(Actor *owner, float damage) {
@@ -33,7 +37,7 @@ float Destructible::heal(float amount) {
 void Destructible::die(Actor *owner) {
   owner->ch='%';
   owner->col=TCODColor::darkRed;
-  owner->name=corpseName;
+  if(corpseName) owner->name=strdup(corpseName);
   owner->blocks=false;
   engine.sendToBack(owner);
 }
@@ -49,20 +53,21 @@ void Destructible::load(const gmtl::Destructible destructible) {
   maxHp = destructible.max_hp();
   hp = destructible.hp();
   defense = destructible.defense();
-  corpseName = destructible.corpseName();
+  if (destructible.corpse_name().size() > 0) {
+    corpseName = strdup(destructible.corpse_name().c_str());
+  }
 }
 
 Destructible *Destructible::create(gmtl::Destructible destructible) {
-  DestructibleType type=(DestructibleType)destructible.destructible_type();
-  Destructible *destructible=NULL;
-  switch(type) {
-  case gmtl::DestructibleType::MONSTER : 
-    destructible=new MonsterDestructible(0,0,NULL); 
+  Destructible *tempDestructible = NULL;
+  switch(destructible.destructible_type()) {
+  case gmtl::MONSTER : 
+    tempDestructible = new MonsterDestructible(0,0,NULL); 
     break;
-  case gmtl::DestructibleType::PLAYER : 
-    destructible=new PlayerDestructible(0,0,NULL); 
+  case gmtl::PLAYER : 
+    tempDestructible = new PlayerDestructible(0,0,NULL); 
     break;
   }
-  destructible->load(destructible);
-  return destructible;
+  tempDestructible->load(destructible);
+  return tempDestructible;
 }

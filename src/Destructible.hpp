@@ -8,7 +8,7 @@ public:
   float maxHp;
   float hp;
   float defense;
-  const char *corpseName;
+  char *corpseName;
 
   Destructible(float maxHp, float defense, const char* corpseName);
   virtual ~Destructible();
@@ -16,8 +16,8 @@ public:
   float takeDamage(Actor *owner, float damage);
   float heal(float amount);
   virtual void die(Actor *owner);
-  void save(gmtl::Destructible *destructible);
-  void load(const gmtl::Destructible destructible);
+  virtual void save(gmtl::Destructible *destructible);
+  virtual void load(const gmtl::Destructible destructible);
   static Destructible *create(gmtl::Destructible destructible);
 };
 

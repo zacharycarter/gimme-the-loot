@@ -1,5 +1,8 @@
+#include "Confuser.hpp"
 #include "Container.hpp"
 #include "Engine.hpp"
+#include "Fireball.hpp"
+#include "Healer.hpp"
 #include "Pickable.hpp"
 
 Pickable::~Pickable() {
@@ -33,22 +36,32 @@ void Pickable::drop(Actor *owner, Actor *wearer) {
   }
 }
 
-Pickable pickable *create(const gmtl::Pickable pickable) {
+Pickable *Pickable::create(const gmtl::Pickable pickable) {
   Pickable *tempPickable = NULL;
   switch(pickable.type()) {
-  case gmtl::PickableType::HEALER :
+  case gmtl::HEALER :
     if (pickable.has_healer()) tempPickable = new Healer(0);
     break;
-  case gmtl::PickableType::LIGHTNING_BOLT :
+  case gmtl::LIGHTNING_BOLT :
     if (pickable.has_lightning_bolt()) tempPickable = new LightningBolt(0,0);
     break;
-  case gmtl::PickableType::CONFUSER :
+  case gmtl::CONFUSER :
     if (pickable.has_confuser()) tempPickable = new Confuser(0,0);
     break;
-  case gmtl::PickableType::FIREBALL :
-    if (pickable.has_fireball()) tempPickable = new Fireball(0,0);
+  case gmtl::FIREBALL :
+    if (pickable.has_fireball()) {
+      tempPickable = new Fireball(0,0);
+    }
     break;
   }
-  tempPickable->load(ai);
+  tempPickable->load(pickable);
   return tempPickable;
+}
+
+void Pickable::save(gmtl::Pickable *pickable) {
+
+}
+
+void Pickable::load(const gmtl::Pickable pickable) {
+
 }

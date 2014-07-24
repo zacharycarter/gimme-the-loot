@@ -289,7 +289,7 @@ void protobuf_AssignDesc_gmtl_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Ai));
   Actor_descriptor_ = file->message_type(12);
-  static const int Actor_offsets_[10] = {
+  static const int Actor_offsets_[11] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Actor, x_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Actor, y_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Actor, ch_),
@@ -300,6 +300,7 @@ void protobuf_AssignDesc_gmtl_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Actor, container_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Actor, destructible_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Actor, pickable_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Actor, ai_),
   };
   Actor_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -521,7 +522,7 @@ void protobuf_AddDesc_gmtl_2eproto() {
     "or\030\003 \003(\0132\013.gmtl.Actor\"\203\001\n\014Destructible\0221"
     "\n\021destructible_type\030\001 \002(\0162\026.gmtl.Destruc"
     "tibleType\022\016\n\006max_hp\030\002 \002(\002\022\n\n\002hp\030\003 \002(\002\022\017\n"
-    "\007defense\030\004 \002(\002\022\023\n\013corpse_name\030\005 \002(\t\"\030\n\006H"
+    "\007defense\030\004 \002(\002\022\023\n\013corpse_name\030\005 \002(\014\"\030\n\006H"
     "ealer\022\016\n\006amount\030\001 \002(\002\".\n\rLightningBolt\022\r"
     "\n\005range\030\001 \002(\002\022\016\n\006damage\030\002 \002(\002\"+\n\010Confuse"
     "r\022\020\n\010nb_turns\030\001 \002(\005\022\r\n\005range\030\002 \002(\002\")\n\010Fi"
@@ -536,27 +537,27 @@ void protobuf_AddDesc_gmtl_2eproto() {
     "l.Ai\"{\n\002Ai\022\032\n\004type\030\001 \002(\0162\014.gmtl.AiType\022#"
     "\n\nmonster_ai\030\002 \001(\0132\017.gmtl.MonsterAi\0224\n\023c"
     "onfused_monster_ai\030\003 \001(\0132\027.gmtl.Confused"
-    "MonsterAi\"\365\001\n\005Actor\022\t\n\001x\030\001 \002(\005\022\t\n\001y\030\002 \002("
+    "MonsterAi\"\213\002\n\005Actor\022\t\n\001x\030\001 \002(\005\022\t\n\001y\030\002 \002("
     "\005\022\n\n\002ch\030\003 \002(\005\022\032\n\005color\030\004 \002(\0132\013.gmtl.Colo"
-    "r\022\014\n\004name\030\005 \002(\t\022\016\n\006blocks\030\006 \002(\005\022 \n\010attac"
+    "r\022\014\n\004name\030\005 \002(\014\022\016\n\006blocks\030\006 \002(\005\022 \n\010attac"
     "ker\030\007 \001(\0132\016.gmtl.Attacker\022\"\n\tcontainer\030\010"
     " \001(\0132\017.gmtl.Container\022(\n\014destructible\030\t "
     "\001(\0132\022.gmtl.Destructible\022 \n\010pickable\030\n \001("
-    "\0132\016.gmtl.Pickable\"/\n\003Log\022\014\n\004text\030\001 \002(\t\022\032"
-    "\n\005color\030\002 \002(\0132\013.gmtl.Color\"\277\002\n\004Game\022\033\n\003m"
-    "ap\030\001 \002(\0132\016.gmtl.Game.Map\022!\n\006player\030\002 \001(\013"
-    "2\021.gmtl.Game.Player\022!\n\006actors\030\003 \001(\0132\021.gm"
-    "tl.Game.Actors\022\035\n\004logs\030\004 \001(\0132\017.gmtl.Game"
-    ".Logs\032I\n\003Map\022\r\n\005width\030\001 \002(\005\022\016\n\006height\030\002 "
-    "\002(\005\022\014\n\004seed\030\003 \002(\005\022\025\n\rexplored_tile\030\004 \003(\005"
-    "\032$\n\006Player\022\032\n\005actor\030\001 \002(\0132\013.gmtl.Actor\032$"
-    "\n\006Actors\022\032\n\005actor\030\001 \003(\0132\013.gmtl.Actor\032\036\n\004"
-    "Logs\022\026\n\003log\030\001 \003(\0132\t.gmtl.Log*+\n\020Destruct"
-    "ibleType\022\013\n\007MONSTER\020\000\022\n\n\006PLAYER\020\001*J\n\014Pic"
-    "kableType\022\n\n\006HEALER\020\000\022\022\n\016LIGHTNING_BOLT\020"
-    "\001\022\014\n\010CONFUSER\020\002\022\014\n\010FIREBALL\020\003*@\n\006AiType\022"
-    "\016\n\nMONSTER_AI\020\000\022\027\n\023CONFUSED_MONSTER_AI\020\001"
-    "\022\r\n\tPLAYER_AI\020\002", 1695);
+    "\0132\016.gmtl.Pickable\022\024\n\002ai\030\013 \001(\0132\010.gmtl.Ai\""
+    "/\n\003Log\022\014\n\004text\030\001 \002(\014\022\032\n\005color\030\002 \002(\0132\013.gm"
+    "tl.Color\"\277\002\n\004Game\022\033\n\003map\030\001 \002(\0132\016.gmtl.Ga"
+    "me.Map\022!\n\006player\030\002 \001(\0132\021.gmtl.Game.Playe"
+    "r\022!\n\006actors\030\003 \001(\0132\021.gmtl.Game.Actors\022\035\n\004"
+    "logs\030\004 \001(\0132\017.gmtl.Game.Logs\032I\n\003Map\022\r\n\005wi"
+    "dth\030\001 \002(\005\022\016\n\006height\030\002 \002(\005\022\014\n\004seed\030\003 \002(\005\022"
+    "\025\n\rexplored_tile\030\004 \003(\005\032$\n\006Player\022\032\n\005acto"
+    "r\030\001 \002(\0132\013.gmtl.Actor\032$\n\006Actors\022\032\n\005actor\030"
+    "\001 \003(\0132\013.gmtl.Actor\032\036\n\004Logs\022\026\n\003log\030\001 \003(\0132"
+    "\t.gmtl.Log*+\n\020DestructibleType\022\013\n\007MONSTE"
+    "R\020\000\022\n\n\006PLAYER\020\001*J\n\014PickableType\022\n\n\006HEALE"
+    "R\020\000\022\022\n\016LIGHTNING_BOLT\020\001\022\014\n\010CONFUSER\020\002\022\014\n"
+    "\010FIREBALL\020\003*@\n\006AiType\022\016\n\nMONSTER_AI\020\000\022\027\n"
+    "\023CONFUSED_MONSTER_AI\020\001\022\r\n\tPLAYER_AI\020\002", 1717);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "gmtl.proto", &protobuf_RegisterTypes);
   Color::default_instance_ = new Color();
@@ -1591,16 +1592,13 @@ bool Destructible::MergePartialFromCodedStream(
         break;
       }
 
-      // required string corpse_name = 5;
+      // required bytes corpse_name = 5;
       case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_corpse_name:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
                 input, this->mutable_corpse_name()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-            this->corpse_name().data(), this->corpse_name().length(),
-            ::google::protobuf::internal::WireFormat::PARSE);
         } else {
           goto handle_uninterpreted;
         }
@@ -1647,12 +1645,9 @@ void Destructible::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteFloat(4, this->defense(), output);
   }
 
-  // required string corpse_name = 5;
+  // required bytes corpse_name = 5;
   if (has_corpse_name()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->corpse_name().data(), this->corpse_name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
+    ::google::protobuf::internal::WireFormatLite::WriteBytes(
       5, this->corpse_name(), output);
   }
 
@@ -1685,13 +1680,10 @@ void Destructible::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(4, this->defense(), target);
   }
 
-  // required string corpse_name = 5;
+  // required bytes corpse_name = 5;
   if (has_corpse_name()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->corpse_name().data(), this->corpse_name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
         5, this->corpse_name(), target);
   }
 
@@ -1727,10 +1719,10 @@ int Destructible::ByteSize() const {
       total_size += 1 + 4;
     }
 
-    // required string corpse_name = 5;
+    // required bytes corpse_name = 5;
     if (has_corpse_name()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::BytesSize(
           this->corpse_name());
     }
 
@@ -3961,6 +3953,7 @@ const int Actor::kAttackerFieldNumber;
 const int Actor::kContainerFieldNumber;
 const int Actor::kDestructibleFieldNumber;
 const int Actor::kPickableFieldNumber;
+const int Actor::kAiFieldNumber;
 #endif  // !_MSC_VER
 
 Actor::Actor()
@@ -3974,6 +3967,7 @@ void Actor::InitAsDefaultInstance() {
   container_ = const_cast< ::gmtl::Container*>(&::gmtl::Container::default_instance());
   destructible_ = const_cast< ::gmtl::Destructible*>(&::gmtl::Destructible::default_instance());
   pickable_ = const_cast< ::gmtl::Pickable*>(&::gmtl::Pickable::default_instance());
+  ai_ = const_cast< ::gmtl::Ai*>(&::gmtl::Ai::default_instance());
 }
 
 Actor::Actor(const Actor& from)
@@ -3994,6 +3988,7 @@ void Actor::SharedCtor() {
   container_ = NULL;
   destructible_ = NULL;
   pickable_ = NULL;
+  ai_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -4011,6 +4006,7 @@ void Actor::SharedDtor() {
     delete container_;
     delete destructible_;
     delete pickable_;
+    delete ai_;
   }
 }
 
@@ -4062,6 +4058,9 @@ void Actor::Clear() {
     }
     if (has_pickable()) {
       if (pickable_ != NULL) pickable_->::gmtl::Pickable::Clear();
+    }
+    if (has_ai()) {
+      if (ai_ != NULL) ai_->::gmtl::Ai::Clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -4135,16 +4134,13 @@ bool Actor::MergePartialFromCodedStream(
         break;
       }
 
-      // required string name = 5;
+      // required bytes name = 5;
       case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_name:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
                 input, this->mutable_name()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-            this->name().data(), this->name().length(),
-            ::google::protobuf::internal::WireFormat::PARSE);
         } else {
           goto handle_uninterpreted;
         }
@@ -4220,6 +4216,20 @@ bool Actor::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(90)) goto parse_ai;
+        break;
+      }
+
+      // optional .gmtl.Ai ai = 11;
+      case 11: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_ai:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_ai()));
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -4263,12 +4273,9 @@ void Actor::SerializeWithCachedSizes(
       4, this->color(), output);
   }
 
-  // required string name = 5;
+  // required bytes name = 5;
   if (has_name()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
+    ::google::protobuf::internal::WireFormatLite::WriteBytes(
       5, this->name(), output);
   }
 
@@ -4301,6 +4308,12 @@ void Actor::SerializeWithCachedSizes(
       10, this->pickable(), output);
   }
 
+  // optional .gmtl.Ai ai = 11;
+  if (has_ai()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      11, this->ai(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -4331,13 +4344,10 @@ void Actor::SerializeWithCachedSizes(
         4, this->color(), target);
   }
 
-  // required string name = 5;
+  // required bytes name = 5;
   if (has_name()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
         5, this->name(), target);
   }
 
@@ -4372,6 +4382,13 @@ void Actor::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         10, this->pickable(), target);
+  }
+
+  // optional .gmtl.Ai ai = 11;
+  if (has_ai()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        11, this->ai(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -4413,10 +4430,10 @@ int Actor::ByteSize() const {
           this->color());
     }
 
-    // required string name = 5;
+    // required bytes name = 5;
     if (has_name()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::BytesSize(
           this->name());
     }
 
@@ -4455,6 +4472,13 @@ int Actor::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->pickable());
+    }
+
+    // optional .gmtl.Ai ai = 11;
+    if (has_ai()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ai());
     }
 
   }
@@ -4516,6 +4540,9 @@ void Actor::MergeFrom(const Actor& from) {
     if (from.has_pickable()) {
       mutable_pickable()->::gmtl::Pickable::MergeFrom(from.pickable());
     }
+    if (from.has_ai()) {
+      mutable_ai()->::gmtl::Ai::MergeFrom(from.ai());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -4550,6 +4577,9 @@ bool Actor::IsInitialized() const {
   if (has_pickable()) {
     if (!this->pickable().IsInitialized()) return false;
   }
+  if (has_ai()) {
+    if (!this->ai().IsInitialized()) return false;
+  }
   return true;
 }
 
@@ -4565,6 +4595,7 @@ void Actor::Swap(Actor* other) {
     std::swap(container_, other->container_);
     std::swap(destructible_, other->destructible_);
     std::swap(pickable_, other->pickable_);
+    std::swap(ai_, other->ai_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -4664,15 +4695,12 @@ bool Log::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required string text = 1;
+      // required bytes text = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
                 input, this->mutable_text()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-            this->text().data(), this->text().length(),
-            ::google::protobuf::internal::WireFormat::PARSE);
         } else {
           goto handle_uninterpreted;
         }
@@ -4712,12 +4740,9 @@ bool Log::MergePartialFromCodedStream(
 
 void Log::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required string text = 1;
+  // required bytes text = 1;
   if (has_text()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->text().data(), this->text().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
+    ::google::protobuf::internal::WireFormatLite::WriteBytes(
       1, this->text(), output);
   }
 
@@ -4735,13 +4760,10 @@ void Log::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Log::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required string text = 1;
+  // required bytes text = 1;
   if (has_text()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->text().data(), this->text().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
         1, this->text(), target);
   }
 
@@ -4763,10 +4785,10 @@ int Log::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required string text = 1;
+    // required bytes text = 1;
     if (has_text()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::BytesSize(
           this->text());
     }
 

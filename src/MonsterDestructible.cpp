@@ -11,6 +11,6 @@ void MonsterDestructible::die(Actor *owner) {
 }
 
 void MonsterDestructible::save(gmtl::Destructible *destructible) {
-  destructible->set_destructible_type(gmtl::DestructibleType::MONSTER);
+  destructible->set_destructible_type(gmtl::MONSTER);
   Destructible::save(destructible);
 }

@@ -15,11 +15,11 @@ public :
   int x,y; // position on map
   int ch; // ascii code
   TCODColor col; // color
-  const char *name;
+  char *name;
   bool blocks;
-  Attacker* attacker;
-  Destructible* destructible;
-  Ai* ai;
+  Attacker *attacker;
+  Destructible *destructible;
+  Ai *ai;
   Pickable *pickable;
   Container *container;
   Actor(int x, int y, int ch, const char *name, const TCODColor &col);

@@ -27,3 +27,10 @@ bool Fireball::use(Actor *owner, Actor *wearer) {
   }
   return Pickable::use(owner,wearer);
 }
+
+void Fireball::save(gmtl::Pickable *pickable) {
+  pickable->set_type(gmtl::FIREBALL);
+  gmtl::Fireball *fireball = pickable->mutable_fireball();
+  fireball->set_range(range);
+  fireball->set_damage(damage);
+}

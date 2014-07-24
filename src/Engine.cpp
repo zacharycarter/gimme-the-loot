@@ -135,17 +135,24 @@ Actor *Engine::getActor(int x, int y) const {
 void Engine::load() {
   if (TCODSystem::fileExists("gmtl.bin")) {
     gmtl::Game saveGame;
+    
     fstream input("gmtl.bin", ios::in | ios::binary);
     if (!saveGame.ParseFromIstream(&input)) {
       cerr << "Failed to load game." << endl;
     }
     const gmtl::Game_Map gameMap = saveGame.map();
+    const gmtl::Game_Actors gameActors = saveGame.actors();
     map = new Map(gameMap.width(), gameMap.height());
     map->load(gameMap);
     player=new Actor(0,0,0,NULL,TCODColor::white);
     player->load(saveGame.player().actor());
     actors.push(player);
-    engine.init();
+    for (int i = 0; i < gameActors.actor_size(); i++) {
+      Actor *actor = new Actor(0,0,0,NULL,TCODColor::white);
+      actor->load(gameActors.actor(i));
+      actors.push(actor);
+    }
+    gui->load(saveGame.logs());
   } else {
     engine.init();
   }

@@ -20,3 +20,15 @@ bool LightningBolt::use(Actor *owner, Actor *wearer) {
 	closestMonster->destructible->takeDamage(closestMonster,damage);
 	return Pickable::use(owner,wearer);
 }
+
+void LightningBolt::load(const gmtl::Pickable pickable) {
+  range = pickable.lightning_bolt().range();
+  damage = pickable.lightning_bolt().damage();
+}
+
+void LightningBolt::save(gmtl::Pickable *pickable) {
+  pickable->set_type(gmtl::LIGHTNING_BOLT);
+  gmtl::LightningBolt *lightningBolt = pickable->mutable_lightning_bolt();
+  lightningBolt->set_range(range);
+  lightningBolt->set_damage(damage);
+}

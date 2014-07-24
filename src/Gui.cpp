@@ -21,7 +21,7 @@ Gui::~Gui() {
 void Gui::render() {
 	// clear the GUI console
 	con->setDefaultBackground(TCODColor::black);
-	con->clear();s
+	con->clear();
 
 
 	// draw the health bar
@@ -148,5 +148,11 @@ void Gui::save(gmtl::Game_Logs *gameLogs) {
 }
 
 void Gui::load(const gmtl::Game_Logs gameLogs) {
-
+  TCODColor col;
+  for (int i = 0; i < gameLogs.log_size(); i++) {
+    const gmtl::Log l = gameLogs.log(i);
+    const gmtl::Color color = l.color();
+    col.setHSV(color.hue(), color.saturation(), color.value());
+    logEntry(col, l.text().c_str());
+  }
 }

@@ -22,7 +22,7 @@ message Destructible {
   required float max_hp = 2;
   required float hp = 3;
   required float defense = 4;
-  required string corpse_name = 5;
+  required bytes corpse_name = 5;
 }
 enum PickableType {
   HEALER = 0;
@@ -74,15 +74,16 @@ message Actor {
   required int32 y = 2;
   required int32 ch = 3;
   required Color color = 4;
-  required string name = 5;
+  required bytes name = 5;
   required int32 blocks = 6;
   optional Attacker attacker = 7;
   optional Container container = 8;
   optional Destructible destructible = 9;
   optional Pickable pickable = 10;
+  optional Ai ai = 11;
 }
 message Log {
-  required string text = 1;
+  required bytes text = 1;
   required Color color = 2; 
 }
 message Game {
