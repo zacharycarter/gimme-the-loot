@@ -51,6 +51,7 @@ class Log;
 class Game;
 class Game_Map;
 class Game_Player;
+class Game_Stairs;
 class Game_Actors;
 class Game_Logs;
 
@@ -1799,6 +1800,90 @@ class Game_Player : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class Game_Stairs : public ::google::protobuf::Message {
+ public:
+  Game_Stairs();
+  virtual ~Game_Stairs();
+
+  Game_Stairs(const Game_Stairs& from);
+
+  inline Game_Stairs& operator=(const Game_Stairs& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Game_Stairs& default_instance();
+
+  void Swap(Game_Stairs* other);
+
+  // implements Message ----------------------------------------------
+
+  Game_Stairs* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Game_Stairs& from);
+  void MergeFrom(const Game_Stairs& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required .gmtl.Actor actor = 1;
+  inline bool has_actor() const;
+  inline void clear_actor();
+  static const int kActorFieldNumber = 1;
+  inline const ::gmtl::Actor& actor() const;
+  inline ::gmtl::Actor* mutable_actor();
+  inline ::gmtl::Actor* release_actor();
+  inline void set_allocated_actor(::gmtl::Actor* actor);
+
+  // @@protoc_insertion_point(class_scope:gmtl.Game.Stairs)
+ private:
+  inline void set_has_actor();
+  inline void clear_has_actor();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::gmtl::Actor* actor_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+
+  friend void  protobuf_AddDesc_gmtl_2eproto();
+  friend void protobuf_AssignDesc_gmtl_2eproto();
+  friend void protobuf_ShutdownFile_gmtl_2eproto();
+
+  void InitAsDefaultInstance();
+  static Game_Stairs* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class Game_Actors : public ::google::protobuf::Message {
  public:
   Game_Actors();
@@ -2023,42 +2108,59 @@ class Game : public ::google::protobuf::Message {
 
   typedef Game_Map Map;
   typedef Game_Player Player;
+  typedef Game_Stairs Stairs;
   typedef Game_Actors Actors;
   typedef Game_Logs Logs;
 
   // accessors -------------------------------------------------------
 
-  // required .gmtl.Game.Map map = 1;
+  // required int32 level = 1;
+  inline bool has_level() const;
+  inline void clear_level();
+  static const int kLevelFieldNumber = 1;
+  inline ::google::protobuf::int32 level() const;
+  inline void set_level(::google::protobuf::int32 value);
+
+  // required .gmtl.Game.Map map = 2;
   inline bool has_map() const;
   inline void clear_map();
-  static const int kMapFieldNumber = 1;
+  static const int kMapFieldNumber = 2;
   inline const ::gmtl::Game_Map& map() const;
   inline ::gmtl::Game_Map* mutable_map();
   inline ::gmtl::Game_Map* release_map();
   inline void set_allocated_map(::gmtl::Game_Map* map);
 
-  // optional .gmtl.Game.Player player = 2;
+  // optional .gmtl.Game.Player player = 3;
   inline bool has_player() const;
   inline void clear_player();
-  static const int kPlayerFieldNumber = 2;
+  static const int kPlayerFieldNumber = 3;
   inline const ::gmtl::Game_Player& player() const;
   inline ::gmtl::Game_Player* mutable_player();
   inline ::gmtl::Game_Player* release_player();
   inline void set_allocated_player(::gmtl::Game_Player* player);
 
-  // optional .gmtl.Game.Actors actors = 3;
+  // optional .gmtl.Game.Stairs stairs = 4;
+  inline bool has_stairs() const;
+  inline void clear_stairs();
+  static const int kStairsFieldNumber = 4;
+  inline const ::gmtl::Game_Stairs& stairs() const;
+  inline ::gmtl::Game_Stairs* mutable_stairs();
+  inline ::gmtl::Game_Stairs* release_stairs();
+  inline void set_allocated_stairs(::gmtl::Game_Stairs* stairs);
+
+  // optional .gmtl.Game.Actors actors = 5;
   inline bool has_actors() const;
   inline void clear_actors();
-  static const int kActorsFieldNumber = 3;
+  static const int kActorsFieldNumber = 5;
   inline const ::gmtl::Game_Actors& actors() const;
   inline ::gmtl::Game_Actors* mutable_actors();
   inline ::gmtl::Game_Actors* release_actors();
   inline void set_allocated_actors(::gmtl::Game_Actors* actors);
 
-  // optional .gmtl.Game.Logs logs = 4;
+  // optional .gmtl.Game.Logs logs = 6;
   inline bool has_logs() const;
   inline void clear_logs();
-  static const int kLogsFieldNumber = 4;
+  static const int kLogsFieldNumber = 6;
   inline const ::gmtl::Game_Logs& logs() const;
   inline ::gmtl::Game_Logs* mutable_logs();
   inline ::gmtl::Game_Logs* release_logs();
@@ -2066,10 +2168,14 @@ class Game : public ::google::protobuf::Message {
 
   // @@protoc_insertion_point(class_scope:gmtl.Game)
  private:
+  inline void set_has_level();
+  inline void clear_has_level();
   inline void set_has_map();
   inline void clear_has_map();
   inline void set_has_player();
   inline void clear_has_player();
+  inline void set_has_stairs();
+  inline void clear_has_stairs();
   inline void set_has_actors();
   inline void clear_has_actors();
   inline void set_has_logs();
@@ -2079,11 +2185,13 @@ class Game : public ::google::protobuf::Message {
 
   ::gmtl::Game_Map* map_;
   ::gmtl::Game_Player* player_;
+  ::gmtl::Game_Stairs* stairs_;
   ::gmtl::Game_Actors* actors_;
   ::gmtl::Game_Logs* logs_;
+  ::google::protobuf::int32 level_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
 
   friend void  protobuf_AddDesc_gmtl_2eproto();
   friend void protobuf_AssignDesc_gmtl_2eproto();
@@ -3610,6 +3718,48 @@ inline void Game_Player::set_allocated_actor(::gmtl::Actor* actor) {
 
 // -------------------------------------------------------------------
 
+// Game_Stairs
+
+// required .gmtl.Actor actor = 1;
+inline bool Game_Stairs::has_actor() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Game_Stairs::set_has_actor() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Game_Stairs::clear_has_actor() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Game_Stairs::clear_actor() {
+  if (actor_ != NULL) actor_->::gmtl::Actor::Clear();
+  clear_has_actor();
+}
+inline const ::gmtl::Actor& Game_Stairs::actor() const {
+  return actor_ != NULL ? *actor_ : *default_instance_->actor_;
+}
+inline ::gmtl::Actor* Game_Stairs::mutable_actor() {
+  set_has_actor();
+  if (actor_ == NULL) actor_ = new ::gmtl::Actor;
+  return actor_;
+}
+inline ::gmtl::Actor* Game_Stairs::release_actor() {
+  clear_has_actor();
+  ::gmtl::Actor* temp = actor_;
+  actor_ = NULL;
+  return temp;
+}
+inline void Game_Stairs::set_allocated_actor(::gmtl::Actor* actor) {
+  delete actor_;
+  actor_ = actor;
+  if (actor) {
+    set_has_actor();
+  } else {
+    clear_has_actor();
+  }
+}
+
+// -------------------------------------------------------------------
+
 // Game_Actors
 
 // repeated .gmtl.Actor actor = 1;
@@ -3670,15 +3820,37 @@ Game_Logs::mutable_log() {
 
 // Game
 
-// required .gmtl.Game.Map map = 1;
-inline bool Game::has_map() const {
+// required int32 level = 1;
+inline bool Game::has_level() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Game::set_has_map() {
+inline void Game::set_has_level() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void Game::clear_has_map() {
+inline void Game::clear_has_level() {
   _has_bits_[0] &= ~0x00000001u;
+}
+inline void Game::clear_level() {
+  level_ = 0;
+  clear_has_level();
+}
+inline ::google::protobuf::int32 Game::level() const {
+  return level_;
+}
+inline void Game::set_level(::google::protobuf::int32 value) {
+  set_has_level();
+  level_ = value;
+}
+
+// required .gmtl.Game.Map map = 2;
+inline bool Game::has_map() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Game::set_has_map() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Game::clear_has_map() {
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void Game::clear_map() {
   if (map_ != NULL) map_->::gmtl::Game_Map::Clear();
@@ -3708,15 +3880,15 @@ inline void Game::set_allocated_map(::gmtl::Game_Map* map) {
   }
 }
 
-// optional .gmtl.Game.Player player = 2;
+// optional .gmtl.Game.Player player = 3;
 inline bool Game::has_player() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void Game::set_has_player() {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void Game::clear_has_player() {
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void Game::clear_player() {
   if (player_ != NULL) player_->::gmtl::Game_Player::Clear();
@@ -3746,15 +3918,53 @@ inline void Game::set_allocated_player(::gmtl::Game_Player* player) {
   }
 }
 
-// optional .gmtl.Game.Actors actors = 3;
+// optional .gmtl.Game.Stairs stairs = 4;
+inline bool Game::has_stairs() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void Game::set_has_stairs() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void Game::clear_has_stairs() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void Game::clear_stairs() {
+  if (stairs_ != NULL) stairs_->::gmtl::Game_Stairs::Clear();
+  clear_has_stairs();
+}
+inline const ::gmtl::Game_Stairs& Game::stairs() const {
+  return stairs_ != NULL ? *stairs_ : *default_instance_->stairs_;
+}
+inline ::gmtl::Game_Stairs* Game::mutable_stairs() {
+  set_has_stairs();
+  if (stairs_ == NULL) stairs_ = new ::gmtl::Game_Stairs;
+  return stairs_;
+}
+inline ::gmtl::Game_Stairs* Game::release_stairs() {
+  clear_has_stairs();
+  ::gmtl::Game_Stairs* temp = stairs_;
+  stairs_ = NULL;
+  return temp;
+}
+inline void Game::set_allocated_stairs(::gmtl::Game_Stairs* stairs) {
+  delete stairs_;
+  stairs_ = stairs;
+  if (stairs) {
+    set_has_stairs();
+  } else {
+    clear_has_stairs();
+  }
+}
+
+// optional .gmtl.Game.Actors actors = 5;
 inline bool Game::has_actors() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void Game::set_has_actors() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void Game::clear_has_actors() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void Game::clear_actors() {
   if (actors_ != NULL) actors_->::gmtl::Game_Actors::Clear();
@@ -3784,15 +3994,15 @@ inline void Game::set_allocated_actors(::gmtl::Game_Actors* actors) {
   }
 }
 
-// optional .gmtl.Game.Logs logs = 4;
+// optional .gmtl.Game.Logs logs = 6;
 inline bool Game::has_logs() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void Game::set_has_logs() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void Game::clear_has_logs() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void Game::clear_logs() {
   if (logs_ != NULL) logs_->::gmtl::Game_Logs::Clear();

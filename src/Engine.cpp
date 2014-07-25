@@ -8,7 +8,7 @@
 #include "Engine.hpp"
 using namespace std;
 
-Engine::Engine(int screenWidth, int screenHeight) : gameStatus(STARTUP),fovRadius(10),screenWidth(screenWidth),screenHeight(screenHeight) {
+Engine::Engine(int screenWidth, int screenHeight) : gameStatus(STARTUP),fovRadius(10),screenWidth(screenWidth),screenHeight(screenHeight),level(1) {
     TCODConsole::initRoot(screenWidth,screenHeight,"gimme-the-loot",false);
     gui = new Gui();
 }
@@ -32,6 +32,10 @@ void Engine::init() {
   player->ai = new PlayerAi();
   player->container = new Container(26);
   actors.push(player);
+  stairs = new Actor(0,0,'>',"stairs",TCODColor::white);
+  stairs->blocks = false;
+  stairs->fovOnly = false;
+  actors.push(stairs);
   map = new Map(80,43);
   map->init(true);
   gui->logEntry(TCODColor::red,"Welcome!");
@@ -64,7 +68,9 @@ void Engine::render() {
   for (Actor **iterator = actors.begin();
        iterator != actors.end(); iterator++) {
     Actor *actor = *iterator;
-    if (actor != player && map->isInFov(actor->x, actor->y)) {
+    if (actor != player 
+	&& ((!actor->fovOnly && map->isExplored(actor->x, actor->y))
+	    || map->isInFov(actor->x, actor->y))) {
       actor->render();
     }
   }
@@ -72,6 +78,27 @@ void Engine::render() {
   gui->render();
   TCODConsole::root->print(1, screenHeight-2, "HP : %d/%d", 
 			   (int)player->destructible->hp,(int)player->destructible->maxHp);
+}
+
+void Engine::nextLevel() {
+  level++;
+
+  gui->logEntry(TCODColor::lightViolet,"You take a moment to rest, and recover your strength.");
+  player->destructible->heal(player->destructible->maxHp/2);
+  gui->logEntry(TCODColor::red,"After a rare moment of peace, you descend\ndeeper into the heart of the dungeon...");
+
+  delete map;
+  // delete all actors but player and stairs
+  for (Actor **it=actors.begin(); it!=actors.end(); it++) {
+    if ( *it != player && *it != stairs ) {
+      delete *it;
+      it = actors.remove(it);
+    }
+  }
+
+  map = new Map(80,43);
+  map->init(true);
+  gameStatus=STARTUP;
 }
 
 void Engine::sendToBack(Actor *actor) {
@@ -144,11 +171,11 @@ Actor *Engine::getActor(int x, int y) const {
 
 void Engine::load() {
   engine.gui->menu.clear();
-  engine.gui->menu.addItem(Menu::NEW_GAME,"New Game");
+  engine.gui->menu.addItem(Menu::NEW_GAME,"New Game", 0);
   if (TCODSystem::fileExists("gmtl.bin")) {
-    engine.gui->menu.addItem(Menu::CONTINUE,"Continue");
+    engine.gui->menu.addItem(Menu::CONTINUE,"Continue", 0);
   }
-  engine.gui->menu.addItem(Menu::EXIT, "Exit");
+  engine.gui->menu.addItem(Menu::EXIT, "Exit", 2);
 
   Menu::MenuItemCode menuItem = engine.gui->menu.pick();
   if (menuItem == Menu::EXIT || menuItem == Menu::NONE) {
@@ -165,10 +192,13 @@ void Engine::load() {
     }
     const gmtl::Game_Map gameMap = saveGame.map();
     const gmtl::Game_Actors gameActors = saveGame.actors();
+    level = saveGame.level();
     map = new Map(gameMap.width(), gameMap.height());
     map->load(gameMap);
     player=new Actor(0,0,0,NULL,TCODColor::white);
     player->load(saveGame.player().actor());
+    stairs = new Actor(0,0,0,NULL,TCODColor::white);
+    stairs->load(saveGame.stairs().actor());
     actors.push(player);
     for (int i = 0; i < gameActors.actor_size(); i++) {
       Actor *actor = new Actor(0,0,0,NULL,TCODColor::white);
@@ -185,10 +215,12 @@ void Engine::save() {
     TCODSystem::deleteFile("gmtl.bin");
   } else {
     gmtl::Game saveGame;
+    saveGame.set_level(level);
     map->save(saveGame.mutable_map());
     player->save(saveGame.mutable_player()->mutable_actor());
+    stairs->save(saveGame.mutable_stairs()->mutable_actor());
     for (Actor **it = actors.begin(); it != actors.end(); it++) {
-      if (*it != player) {
+      if (*it != player && *it != stairs) {
 	(*it)->save(saveGame.mutable_actors()->add_actor());
       }
     }

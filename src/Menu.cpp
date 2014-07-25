@@ -1,4 +1,8 @@
+#include "Engine.hpp"
 #include "Menu.hpp"
+
+Menu::Menu() {
+}
 
 Menu::~Menu() {
   clear();
@@ -8,17 +12,19 @@ void Menu::clear() {
   items.clearAndDelete();
 }
 
-void Menu::addItem(MenuItemCode code, const char *label) {
+void Menu::addItem(MenuItemCode code, const char *label, int offset) {
   MenuItem *item = new MenuItem();
   item->code = code;
   item->label = label;
+  item->offset = offset;
   items.push(item);
 }
 
 Menu::MenuItemCode Menu::pick() {
-    static TCODImage img("menu_background1.png");
-    int selectedItem=0;
-    while( !TCODConsole::isWindowClosed() ) {
+  static TCODImage img("gmtl.png");
+  img.scale(160, 100);
+  int selectedItem=0;
+  while( !TCODConsole::isWindowClosed() ) {
       img.blit2x(TCODConsole::root,0,0);
       int currentItem=0;
       for (MenuItem **it=items.begin(); it!=items.end(); it++) {
@@ -27,7 +33,7 @@ Menu::MenuItemCode Menu::pick() {
 	} else {
 	  TCODConsole::root->setDefaultForeground(TCODColor::lightGrey);
 	}
-	TCODConsole::root->print(10,10+currentItem*3,(*it)->label);
+	TCODConsole::root->print(36+(*it)->offset,30+currentItem*3,(*it)->label);
 	currentItem++;
       }
       TCODConsole::flush();

@@ -19,16 +19,19 @@ public :
   TCOD_mouse_t mouse;
   TCODList<Actor *> actors;
   Actor *player;
+  Actor *stairs;
   Map *map;
   int fovRadius;
   int screenWidth;
   int screenHeight;
+  int level;
   Gui *gui;
  
   Engine(int screenWidth, int screenHeight);
   ~Engine();
   void update();
   void render();
+  void nextLevel();
   void sendToBack(Actor *actor);
   bool pickATile(int *x, int *y, float maxRange = 0.0f);
   Actor *getClosestMonster(int x, int y, float range) const;

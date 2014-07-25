@@ -17,6 +17,7 @@ public :
   TCODColor col; // color
   char *name;
   bool blocks;
+  bool fovOnly;
   Attacker *attacker;
   Destructible *destructible;
   Ai *ai;

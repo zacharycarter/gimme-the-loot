@@ -96,14 +96,19 @@ message Game {
   message Player {
     required Actor actor = 1;
   }
+  message Stairs {
+    required Actor actor = 1;
+  }
   message Actors {
     repeated Actor actor = 1;
   }
   message Logs {
     repeated Log log = 1;
   }
-  required Map map = 1;
-  optional Player player = 2;
-  optional Actors actors = 3;
-  optional Logs logs = 4;
+  required int32 level = 1;
+  required Map map = 2;
+  optional Player player = 3;
+  optional Stairs stairs = 4;
+  optional Actors actors = 5;
+  optional Logs logs = 6;
 }

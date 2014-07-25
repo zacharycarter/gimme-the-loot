@@ -71,6 +71,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* Game_Player_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Game_Player_reflection_ = NULL;
+const ::google::protobuf::Descriptor* Game_Stairs_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  Game_Stairs_reflection_ = NULL;
 const ::google::protobuf::Descriptor* Game_Actors_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Game_Actors_reflection_ = NULL;
@@ -330,9 +333,11 @@ void protobuf_AssignDesc_gmtl_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Log));
   Game_descriptor_ = file->message_type(14);
-  static const int Game_offsets_[4] = {
+  static const int Game_offsets_[6] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game, level_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game, map_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game, player_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game, stairs_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game, actors_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game, logs_),
   };
@@ -380,7 +385,22 @@ void protobuf_AssignDesc_gmtl_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Game_Player));
-  Game_Actors_descriptor_ = Game_descriptor_->nested_type(2);
+  Game_Stairs_descriptor_ = Game_descriptor_->nested_type(2);
+  static const int Game_Stairs_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game_Stairs, actor_),
+  };
+  Game_Stairs_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      Game_Stairs_descriptor_,
+      Game_Stairs::default_instance_,
+      Game_Stairs_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game_Stairs, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game_Stairs, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(Game_Stairs));
+  Game_Actors_descriptor_ = Game_descriptor_->nested_type(3);
   static const int Game_Actors_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game_Actors, actor_),
   };
@@ -395,7 +415,7 @@ void protobuf_AssignDesc_gmtl_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Game_Actors));
-  Game_Logs_descriptor_ = Game_descriptor_->nested_type(3);
+  Game_Logs_descriptor_ = Game_descriptor_->nested_type(4);
   static const int Game_Logs_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Game_Logs, log_),
   };
@@ -460,6 +480,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Game_Player_descriptor_, &Game_Player::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    Game_Stairs_descriptor_, &Game_Stairs::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Game_Actors_descriptor_, &Game_Actors::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Game_Logs_descriptor_, &Game_Logs::default_instance());
@@ -502,6 +524,8 @@ void protobuf_ShutdownFile_gmtl_2eproto() {
   delete Game_Map_reflection_;
   delete Game_Player::default_instance_;
   delete Game_Player_reflection_;
+  delete Game_Stairs::default_instance_;
+  delete Game_Stairs_reflection_;
   delete Game_Actors::default_instance_;
   delete Game_Actors_reflection_;
   delete Game_Logs::default_instance_;
@@ -545,19 +569,22 @@ void protobuf_AddDesc_gmtl_2eproto() {
     "\001(\0132\022.gmtl.Destructible\022 \n\010pickable\030\n \001("
     "\0132\016.gmtl.Pickable\022\024\n\002ai\030\013 \001(\0132\010.gmtl.Ai\""
     "/\n\003Log\022\014\n\004text\030\001 \002(\014\022\032\n\005color\030\002 \002(\0132\013.gm"
-    "tl.Color\"\277\002\n\004Game\022\033\n\003map\030\001 \002(\0132\016.gmtl.Ga"
-    "me.Map\022!\n\006player\030\002 \001(\0132\021.gmtl.Game.Playe"
-    "r\022!\n\006actors\030\003 \001(\0132\021.gmtl.Game.Actors\022\035\n\004"
-    "logs\030\004 \001(\0132\017.gmtl.Game.Logs\032I\n\003Map\022\r\n\005wi"
-    "dth\030\001 \002(\005\022\016\n\006height\030\002 \002(\005\022\014\n\004seed\030\003 \002(\005\022"
-    "\025\n\rexplored_tile\030\004 \003(\005\032$\n\006Player\022\032\n\005acto"
-    "r\030\001 \002(\0132\013.gmtl.Actor\032$\n\006Actors\022\032\n\005actor\030"
-    "\001 \003(\0132\013.gmtl.Actor\032\036\n\004Logs\022\026\n\003log\030\001 \003(\0132"
-    "\t.gmtl.Log*+\n\020DestructibleType\022\013\n\007MONSTE"
-    "R\020\000\022\n\n\006PLAYER\020\001*J\n\014PickableType\022\n\n\006HEALE"
-    "R\020\000\022\022\n\016LIGHTNING_BOLT\020\001\022\014\n\010CONFUSER\020\002\022\014\n"
-    "\010FIREBALL\020\003*@\n\006AiType\022\016\n\nMONSTER_AI\020\000\022\027\n"
-    "\023CONFUSED_MONSTER_AI\020\001\022\r\n\tPLAYER_AI\020\002", 1717);
+    "tl.Color\"\227\003\n\004Game\022\r\n\005level\030\001 \002(\005\022\033\n\003map\030"
+    "\002 \002(\0132\016.gmtl.Game.Map\022!\n\006player\030\003 \001(\0132\021."
+    "gmtl.Game.Player\022!\n\006stairs\030\004 \001(\0132\021.gmtl."
+    "Game.Stairs\022!\n\006actors\030\005 \001(\0132\021.gmtl.Game."
+    "Actors\022\035\n\004logs\030\006 \001(\0132\017.gmtl.Game.Logs\032I\n"
+    "\003Map\022\r\n\005width\030\001 \002(\005\022\016\n\006height\030\002 \002(\005\022\014\n\004s"
+    "eed\030\003 \002(\005\022\025\n\rexplored_tile\030\004 \003(\005\032$\n\006Play"
+    "er\022\032\n\005actor\030\001 \002(\0132\013.gmtl.Actor\032$\n\006Stairs"
+    "\022\032\n\005actor\030\001 \002(\0132\013.gmtl.Actor\032$\n\006Actors\022\032"
+    "\n\005actor\030\001 \003(\0132\013.gmtl.Actor\032\036\n\004Logs\022\026\n\003lo"
+    "g\030\001 \003(\0132\t.gmtl.Log*+\n\020DestructibleType\022\013"
+    "\n\007MONSTER\020\000\022\n\n\006PLAYER\020\001*J\n\014PickableType\022"
+    "\n\n\006HEALER\020\000\022\022\n\016LIGHTNING_BOLT\020\001\022\014\n\010CONFU"
+    "SER\020\002\022\014\n\010FIREBALL\020\003*@\n\006AiType\022\016\n\nMONSTER"
+    "_AI\020\000\022\027\n\023CONFUSED_MONSTER_AI\020\001\022\r\n\tPLAYER"
+    "_AI\020\002", 1805);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "gmtl.proto", &protobuf_RegisterTypes);
   Color::default_instance_ = new Color();
@@ -577,6 +604,7 @@ void protobuf_AddDesc_gmtl_2eproto() {
   Game::default_instance_ = new Game();
   Game_Map::default_instance_ = new Game_Map();
   Game_Player::default_instance_ = new Game_Player();
+  Game_Stairs::default_instance_ = new Game_Stairs();
   Game_Actors::default_instance_ = new Game_Actors();
   Game_Logs::default_instance_ = new Game_Logs();
   Color::default_instance_->InitAsDefaultInstance();
@@ -596,6 +624,7 @@ void protobuf_AddDesc_gmtl_2eproto() {
   Game::default_instance_->InitAsDefaultInstance();
   Game_Map::default_instance_->InitAsDefaultInstance();
   Game_Player::default_instance_->InitAsDefaultInstance();
+  Game_Stairs::default_instance_->InitAsDefaultInstance();
   Game_Actors::default_instance_->InitAsDefaultInstance();
   Game_Logs::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_gmtl_2eproto);
@@ -5433,6 +5462,223 @@ void Game_Player::Swap(Game_Player* other) {
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
+const int Game_Stairs::kActorFieldNumber;
+#endif  // !_MSC_VER
+
+Game_Stairs::Game_Stairs()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void Game_Stairs::InitAsDefaultInstance() {
+  actor_ = const_cast< ::gmtl::Actor*>(&::gmtl::Actor::default_instance());
+}
+
+Game_Stairs::Game_Stairs(const Game_Stairs& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void Game_Stairs::SharedCtor() {
+  _cached_size_ = 0;
+  actor_ = NULL;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+Game_Stairs::~Game_Stairs() {
+  SharedDtor();
+}
+
+void Game_Stairs::SharedDtor() {
+  if (this != default_instance_) {
+    delete actor_;
+  }
+}
+
+void Game_Stairs::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Game_Stairs::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return Game_Stairs_descriptor_;
+}
+
+const Game_Stairs& Game_Stairs::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_gmtl_2eproto();
+  return *default_instance_;
+}
+
+Game_Stairs* Game_Stairs::default_instance_ = NULL;
+
+Game_Stairs* Game_Stairs::New() const {
+  return new Game_Stairs;
+}
+
+void Game_Stairs::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (has_actor()) {
+      if (actor_ != NULL) actor_->::gmtl::Actor::Clear();
+    }
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool Game_Stairs::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required .gmtl.Actor actor = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_actor()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void Game_Stairs::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // required .gmtl.Actor actor = 1;
+  if (has_actor()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->actor(), output);
+  }
+
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* Game_Stairs::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // required .gmtl.Actor actor = 1;
+  if (has_actor()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, this->actor(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int Game_Stairs::ByteSize() const {
+  int total_size = 0;
+
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required .gmtl.Actor actor = 1;
+    if (has_actor()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->actor());
+    }
+
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Game_Stairs::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const Game_Stairs* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const Game_Stairs*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void Game_Stairs::MergeFrom(const Game_Stairs& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_actor()) {
+      mutable_actor()->::gmtl::Actor::MergeFrom(from.actor());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void Game_Stairs::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Game_Stairs::CopyFrom(const Game_Stairs& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Game_Stairs::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
+
+  if (has_actor()) {
+    if (!this->actor().IsInitialized()) return false;
+  }
+  return true;
+}
+
+void Game_Stairs::Swap(Game_Stairs* other) {
+  if (other != this) {
+    std::swap(actor_, other->actor_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata Game_Stairs::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = Game_Stairs_descriptor_;
+  metadata.reflection = Game_Stairs_reflection_;
+  return metadata;
+}
+
+
+// -------------------------------------------------------------------
+
+#ifndef _MSC_VER
 const int Game_Actors::kActorFieldNumber;
 #endif  // !_MSC_VER
 
@@ -5845,8 +6091,10 @@ void Game_Logs::Swap(Game_Logs* other) {
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
+const int Game::kLevelFieldNumber;
 const int Game::kMapFieldNumber;
 const int Game::kPlayerFieldNumber;
+const int Game::kStairsFieldNumber;
 const int Game::kActorsFieldNumber;
 const int Game::kLogsFieldNumber;
 #endif  // !_MSC_VER
@@ -5859,6 +6107,7 @@ Game::Game()
 void Game::InitAsDefaultInstance() {
   map_ = const_cast< ::gmtl::Game_Map*>(&::gmtl::Game_Map::default_instance());
   player_ = const_cast< ::gmtl::Game_Player*>(&::gmtl::Game_Player::default_instance());
+  stairs_ = const_cast< ::gmtl::Game_Stairs*>(&::gmtl::Game_Stairs::default_instance());
   actors_ = const_cast< ::gmtl::Game_Actors*>(&::gmtl::Game_Actors::default_instance());
   logs_ = const_cast< ::gmtl::Game_Logs*>(&::gmtl::Game_Logs::default_instance());
 }
@@ -5871,8 +6120,10 @@ Game::Game(const Game& from)
 
 void Game::SharedCtor() {
   _cached_size_ = 0;
+  level_ = 0;
   map_ = NULL;
   player_ = NULL;
+  stairs_ = NULL;
   actors_ = NULL;
   logs_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -5886,6 +6137,7 @@ void Game::SharedDtor() {
   if (this != default_instance_) {
     delete map_;
     delete player_;
+    delete stairs_;
     delete actors_;
     delete logs_;
   }
@@ -5914,11 +6166,15 @@ Game* Game::New() const {
 
 void Game::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    level_ = 0;
     if (has_map()) {
       if (map_ != NULL) map_->::gmtl::Game_Map::Clear();
     }
     if (has_player()) {
       if (player_ != NULL) player_->::gmtl::Game_Player::Clear();
+    }
+    if (has_stairs()) {
+      if (stairs_ != NULL) stairs_->::gmtl::Game_Stairs::Clear();
     }
     if (has_actors()) {
       if (actors_ != NULL) actors_->::gmtl::Game_Actors::Clear();
@@ -5937,21 +6193,37 @@ bool Game::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .gmtl.Game.Map map = 1;
+      // required int32 level = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &level_)));
+          set_has_level();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(18)) goto parse_map;
+        break;
+      }
+
+      // required .gmtl.Game.Map map = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_map:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_map()));
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(18)) goto parse_player;
+        if (input->ExpectTag(26)) goto parse_player;
         break;
       }
 
-      // optional .gmtl.Game.Player player = 2;
-      case 2: {
+      // optional .gmtl.Game.Player player = 3;
+      case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_player:
@@ -5960,12 +6232,26 @@ bool Game::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(26)) goto parse_actors;
+        if (input->ExpectTag(34)) goto parse_stairs;
         break;
       }
 
-      // optional .gmtl.Game.Actors actors = 3;
-      case 3: {
+      // optional .gmtl.Game.Stairs stairs = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_stairs:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_stairs()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(42)) goto parse_actors;
+        break;
+      }
+
+      // optional .gmtl.Game.Actors actors = 5;
+      case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_actors:
@@ -5974,12 +6260,12 @@ bool Game::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(34)) goto parse_logs;
+        if (input->ExpectTag(50)) goto parse_logs;
         break;
       }
 
-      // optional .gmtl.Game.Logs logs = 4;
-      case 4: {
+      // optional .gmtl.Game.Logs logs = 6;
+      case 6: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_logs:
@@ -6010,28 +6296,39 @@ bool Game::MergePartialFromCodedStream(
 
 void Game::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .gmtl.Game.Map map = 1;
+  // required int32 level = 1;
+  if (has_level()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->level(), output);
+  }
+
+  // required .gmtl.Game.Map map = 2;
   if (has_map()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->map(), output);
+      2, this->map(), output);
   }
 
-  // optional .gmtl.Game.Player player = 2;
+  // optional .gmtl.Game.Player player = 3;
   if (has_player()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->player(), output);
+      3, this->player(), output);
   }
 
-  // optional .gmtl.Game.Actors actors = 3;
+  // optional .gmtl.Game.Stairs stairs = 4;
+  if (has_stairs()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      4, this->stairs(), output);
+  }
+
+  // optional .gmtl.Game.Actors actors = 5;
   if (has_actors()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      3, this->actors(), output);
+      5, this->actors(), output);
   }
 
-  // optional .gmtl.Game.Logs logs = 4;
+  // optional .gmtl.Game.Logs logs = 6;
   if (has_logs()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      4, this->logs(), output);
+      6, this->logs(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -6042,32 +6339,44 @@ void Game::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Game::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .gmtl.Game.Map map = 1;
+  // required int32 level = 1;
+  if (has_level()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->level(), target);
+  }
+
+  // required .gmtl.Game.Map map = 2;
   if (has_map()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        1, this->map(), target);
+        2, this->map(), target);
   }
 
-  // optional .gmtl.Game.Player player = 2;
+  // optional .gmtl.Game.Player player = 3;
   if (has_player()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        2, this->player(), target);
+        3, this->player(), target);
   }
 
-  // optional .gmtl.Game.Actors actors = 3;
+  // optional .gmtl.Game.Stairs stairs = 4;
+  if (has_stairs()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        4, this->stairs(), target);
+  }
+
+  // optional .gmtl.Game.Actors actors = 5;
   if (has_actors()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        3, this->actors(), target);
+        5, this->actors(), target);
   }
 
-  // optional .gmtl.Game.Logs logs = 4;
+  // optional .gmtl.Game.Logs logs = 6;
   if (has_logs()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        4, this->logs(), target);
+        6, this->logs(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -6081,28 +6390,42 @@ int Game::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .gmtl.Game.Map map = 1;
+    // required int32 level = 1;
+    if (has_level()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->level());
+    }
+
+    // required .gmtl.Game.Map map = 2;
     if (has_map()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->map());
     }
 
-    // optional .gmtl.Game.Player player = 2;
+    // optional .gmtl.Game.Player player = 3;
     if (has_player()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->player());
     }
 
-    // optional .gmtl.Game.Actors actors = 3;
+    // optional .gmtl.Game.Stairs stairs = 4;
+    if (has_stairs()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->stairs());
+    }
+
+    // optional .gmtl.Game.Actors actors = 5;
     if (has_actors()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->actors());
     }
 
-    // optional .gmtl.Game.Logs logs = 4;
+    // optional .gmtl.Game.Logs logs = 6;
     if (has_logs()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -6136,11 +6459,17 @@ void Game::MergeFrom(const ::google::protobuf::Message& from) {
 void Game::MergeFrom(const Game& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_level()) {
+      set_level(from.level());
+    }
     if (from.has_map()) {
       mutable_map()->::gmtl::Game_Map::MergeFrom(from.map());
     }
     if (from.has_player()) {
       mutable_player()->::gmtl::Game_Player::MergeFrom(from.player());
+    }
+    if (from.has_stairs()) {
+      mutable_stairs()->::gmtl::Game_Stairs::MergeFrom(from.stairs());
     }
     if (from.has_actors()) {
       mutable_actors()->::gmtl::Game_Actors::MergeFrom(from.actors());
@@ -6165,13 +6494,16 @@ void Game::CopyFrom(const Game& from) {
 }
 
 bool Game::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
 
   if (has_map()) {
     if (!this->map().IsInitialized()) return false;
   }
   if (has_player()) {
     if (!this->player().IsInitialized()) return false;
+  }
+  if (has_stairs()) {
+    if (!this->stairs().IsInitialized()) return false;
   }
   if (has_actors()) {
     if (!this->actors().IsInitialized()) return false;
@@ -6184,8 +6516,10 @@ bool Game::IsInitialized() const {
 
 void Game::Swap(Game* other) {
   if (other != this) {
+    std::swap(level_, other->level_);
     std::swap(map_, other->map_);
     std::swap(player_, other->player_);
+    std::swap(stairs_, other->stairs_);
     std::swap(actors_, other->actors_);
     std::swap(logs_, other->logs_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);

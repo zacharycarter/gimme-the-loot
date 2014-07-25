@@ -49,6 +49,9 @@ void Gui::render() {
 	// mouse look
 	renderMouseLook();
 
+	con->setDefaultForeground(TCODColor::white);
+	con->print(3,3,"Dungeon level %d",engine.level);
+
 	// blit the GUI console on the root console
 	TCODConsole::blit(con,0,0,engine.screenWidth,PANEL_HEIGHT,
 		TCODConsole::root,0,engine.screenHeight-PANEL_HEIGHT);

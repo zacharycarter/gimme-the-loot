@@ -192,6 +192,8 @@ void Map::createRoom(bool first, int x1, int y1, int x2, int y2, bool withActors
 	  }
 	  nbItems--;
 	}
+	engine.stairs->x=(x1+x2)/2;
+	engine.stairs->y=(y1+y2)/2;
     }
 }
 
