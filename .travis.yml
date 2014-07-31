@@ -1,0 +1,8 @@
+language: cpp
+compiler:
+  - gcc
+before_scrit:
+  - mkdir build
+  - cd build
+  - cmake ..
+script: make

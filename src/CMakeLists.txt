@@ -85,6 +85,7 @@ set (SRCS
 )
 
 find_package (Libtcod REQUIRED)
+include_directories (${LIBTCOD_INCLUDE_DIRS})
 
 find_package (Libtcodxx REQUIRED)
 include_directories (${LIBTCODXX_INCLUDE_DIRS})
@@ -98,3 +99,12 @@ link_libraries (
 )
 
 add_executable (gimme-the-loot ${HDRS} ${SRCS})
+
+ADD_CUSTOM_COMMAND(
+  TARGET gimme-the-loot
+  POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy
+  ${CMAKE_SOURCE_DIR}/gmtl.png ${EXECUTABLE_OUTPUT_PATH}
+  COMMAND ${CMAKE_COMMAND} -E copy
+  ${CMAKE_SOURCE_DIR}/terminal.png ${EXECUTABLE_OUTPUT_PATH}
+)
