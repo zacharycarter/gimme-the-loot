@@ -1,4 +1,7 @@
+#include <math.h>
+
 #include "Actor.hpp"
+#include "Container.hpp"
 #include "Attacker.hpp"
 #include "Confuser.hpp"
 #include "Fireball.hpp"
@@ -198,21 +201,26 @@ void Map::createRoom(bool first, int x1, int y1, int x2, int y2, bool withActors
 }
 
 void Map::addMonster(int x, int y) {
+  int greedModifier = ceil(engine.player->container->gold / 100);
   TCODRandom *rng = TCODRandom::getInstance();
   if (rng->getInt(0, 100) < 80) {
-    Actor *orc = new Actor(x,y,'o',"orc",
-        TCODColor::desaturatedGreen);
-    orc->destructible = new MonsterDestructible(10,0,"dead orc");
-    orc->attacker = new Attacker(3);
-    orc->ai = new MonsterAi();
-    engine.actors.push(orc);
+    Actor *goblin = new Actor(x,y,'g',"greedy goblin",
+			      TCODColor(67,95,7));
+    goblin->destructible = new MonsterDestructible(10 + greedModifier,0,"dead goblin");
+    goblin->attacker = new Attacker(3);
+    goblin->ai = new MonsterAi();
+    goblin->container = new Container(0);
+    goblin->container->addGold(rng->getInt(0, 5));
+    engine.actors.push(goblin);
   } else {
-    Actor *troll = new Actor(x,y,'T',"troll",
-         TCODColor::darkerGreen);
-    troll->destructible = new MonsterDestructible(16,1,"troll carcass");
-    troll->attacker = new Attacker(4);
-    troll->ai = new MonsterAi();
-    engine.actors.push(troll);
+    Actor *orc = new Actor(x,y,'O',"jealous orc",
+			   TCODColor(27,38,3));
+    orc->destructible = new MonsterDestructible(16 + greedModifier,1,"orc carcass");
+    orc->attacker = new Attacker(4);
+    orc->ai = new MonsterAi();
+    orc->container = new Container(0);
+    orc->container->addGold(rng->getInt(2, 10));
+    engine.actors.push(orc);
   }
 }
 

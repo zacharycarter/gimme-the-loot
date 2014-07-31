@@ -34,7 +34,7 @@ void Actor::render() const {
 }
 
 void Actor::update() {
-	if ( ai ) ai->update(this);
+  if (ai) ai->update(this);
 }
 
 void Actor::save(gmtl::Actor *actor) {

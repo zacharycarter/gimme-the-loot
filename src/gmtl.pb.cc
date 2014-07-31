@@ -126,8 +126,9 @@ void protobuf_AssignDesc_gmtl_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Attacker));
   Container_descriptor_ = file->message_type(2);
-  static const int Container_offsets_[3] = {
+  static const int Container_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Container, size_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Container, gold_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Container, inventory_size_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Container, actor_),
   };
@@ -541,50 +542,50 @@ void protobuf_AddDesc_gmtl_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\ngmtl.proto\022\004gmtl\"7\n\005Color\022\013\n\003hue\030\001 \002(\002"
     "\022\022\n\nsaturation\030\002 \002(\002\022\r\n\005value\030\003 \002(\002\"\031\n\010A"
-    "ttacker\022\r\n\005power\030\001 \002(\002\"M\n\tContainer\022\014\n\004s"
-    "ize\030\001 \002(\005\022\026\n\016inventory_size\030\002 \002(\005\022\032\n\005act"
-    "or\030\003 \003(\0132\013.gmtl.Actor\"\203\001\n\014Destructible\0221"
-    "\n\021destructible_type\030\001 \002(\0162\026.gmtl.Destruc"
-    "tibleType\022\016\n\006max_hp\030\002 \002(\002\022\n\n\002hp\030\003 \002(\002\022\017\n"
-    "\007defense\030\004 \002(\002\022\023\n\013corpse_name\030\005 \002(\014\"\030\n\006H"
-    "ealer\022\016\n\006amount\030\001 \002(\002\".\n\rLightningBolt\022\r"
-    "\n\005range\030\001 \002(\002\022\016\n\006damage\030\002 \002(\002\"+\n\010Confuse"
-    "r\022\020\n\010nb_turns\030\001 \002(\005\022\r\n\005range\030\002 \002(\002\")\n\010Fi"
-    "reball\022\r\n\005range\030\001 \002(\002\022\016\n\006damage\030\002 \002(\002\"\273\001"
-    "\n\010Pickable\022 \n\004type\030\001 \002(\0162\022.gmtl.Pickable"
-    "Type\022\034\n\006healer\030\002 \001(\0132\014.gmtl.Healer\022+\n\016li"
-    "ghtning_bolt\030\003 \001(\0132\023.gmtl.LightningBolt\022"
-    " \n\010confuser\030\004 \001(\0132\016.gmtl.Confuser\022 \n\010fir"
-    "eball\030\005 \001(\0132\016.gmtl.Fireball\"\037\n\tMonsterAi"
-    "\022\022\n\nmove_count\030\001 \002(\005\">\n\021ConfusedMonsterA"
-    "i\022\017\n\007nbTurns\030\001 \002(\005\022\030\n\006old_ai\030\002 \002(\0132\010.gmt"
-    "l.Ai\"{\n\002Ai\022\032\n\004type\030\001 \002(\0162\014.gmtl.AiType\022#"
-    "\n\nmonster_ai\030\002 \001(\0132\017.gmtl.MonsterAi\0224\n\023c"
-    "onfused_monster_ai\030\003 \001(\0132\027.gmtl.Confused"
-    "MonsterAi\"\213\002\n\005Actor\022\t\n\001x\030\001 \002(\005\022\t\n\001y\030\002 \002("
-    "\005\022\n\n\002ch\030\003 \002(\005\022\032\n\005color\030\004 \002(\0132\013.gmtl.Colo"
-    "r\022\014\n\004name\030\005 \002(\014\022\016\n\006blocks\030\006 \002(\005\022 \n\010attac"
-    "ker\030\007 \001(\0132\016.gmtl.Attacker\022\"\n\tcontainer\030\010"
-    " \001(\0132\017.gmtl.Container\022(\n\014destructible\030\t "
-    "\001(\0132\022.gmtl.Destructible\022 \n\010pickable\030\n \001("
-    "\0132\016.gmtl.Pickable\022\024\n\002ai\030\013 \001(\0132\010.gmtl.Ai\""
-    "/\n\003Log\022\014\n\004text\030\001 \002(\014\022\032\n\005color\030\002 \002(\0132\013.gm"
-    "tl.Color\"\227\003\n\004Game\022\r\n\005level\030\001 \002(\005\022\033\n\003map\030"
-    "\002 \002(\0132\016.gmtl.Game.Map\022!\n\006player\030\003 \001(\0132\021."
-    "gmtl.Game.Player\022!\n\006stairs\030\004 \001(\0132\021.gmtl."
-    "Game.Stairs\022!\n\006actors\030\005 \001(\0132\021.gmtl.Game."
-    "Actors\022\035\n\004logs\030\006 \001(\0132\017.gmtl.Game.Logs\032I\n"
-    "\003Map\022\r\n\005width\030\001 \002(\005\022\016\n\006height\030\002 \002(\005\022\014\n\004s"
-    "eed\030\003 \002(\005\022\025\n\rexplored_tile\030\004 \003(\005\032$\n\006Play"
-    "er\022\032\n\005actor\030\001 \002(\0132\013.gmtl.Actor\032$\n\006Stairs"
-    "\022\032\n\005actor\030\001 \002(\0132\013.gmtl.Actor\032$\n\006Actors\022\032"
-    "\n\005actor\030\001 \003(\0132\013.gmtl.Actor\032\036\n\004Logs\022\026\n\003lo"
-    "g\030\001 \003(\0132\t.gmtl.Log*+\n\020DestructibleType\022\013"
-    "\n\007MONSTER\020\000\022\n\n\006PLAYER\020\001*J\n\014PickableType\022"
-    "\n\n\006HEALER\020\000\022\022\n\016LIGHTNING_BOLT\020\001\022\014\n\010CONFU"
-    "SER\020\002\022\014\n\010FIREBALL\020\003*@\n\006AiType\022\016\n\nMONSTER"
-    "_AI\020\000\022\027\n\023CONFUSED_MONSTER_AI\020\001\022\r\n\tPLAYER"
-    "_AI\020\002", 1805);
+    "ttacker\022\r\n\005power\030\001 \002(\002\"[\n\tContainer\022\014\n\004s"
+    "ize\030\001 \002(\005\022\014\n\004gold\030\002 \002(\005\022\026\n\016inventory_siz"
+    "e\030\003 \002(\005\022\032\n\005actor\030\004 \003(\0132\013.gmtl.Actor\"\203\001\n\014"
+    "Destructible\0221\n\021destructible_type\030\001 \002(\0162"
+    "\026.gmtl.DestructibleType\022\016\n\006max_hp\030\002 \002(\002\022"
+    "\n\n\002hp\030\003 \002(\002\022\017\n\007defense\030\004 \002(\002\022\023\n\013corpse_n"
+    "ame\030\005 \002(\014\"\030\n\006Healer\022\016\n\006amount\030\001 \002(\002\".\n\rL"
+    "ightningBolt\022\r\n\005range\030\001 \002(\002\022\016\n\006damage\030\002 "
+    "\002(\002\"+\n\010Confuser\022\020\n\010nb_turns\030\001 \002(\005\022\r\n\005ran"
+    "ge\030\002 \002(\002\")\n\010Fireball\022\r\n\005range\030\001 \002(\002\022\016\n\006d"
+    "amage\030\002 \002(\002\"\273\001\n\010Pickable\022 \n\004type\030\001 \002(\0162\022"
+    ".gmtl.PickableType\022\034\n\006healer\030\002 \001(\0132\014.gmt"
+    "l.Healer\022+\n\016lightning_bolt\030\003 \001(\0132\023.gmtl."
+    "LightningBolt\022 \n\010confuser\030\004 \001(\0132\016.gmtl.C"
+    "onfuser\022 \n\010fireball\030\005 \001(\0132\016.gmtl.Firebal"
+    "l\"\037\n\tMonsterAi\022\022\n\nmove_count\030\001 \002(\005\">\n\021Co"
+    "nfusedMonsterAi\022\017\n\007nbTurns\030\001 \002(\005\022\030\n\006old_"
+    "ai\030\002 \002(\0132\010.gmtl.Ai\"{\n\002Ai\022\032\n\004type\030\001 \002(\0162\014"
+    ".gmtl.AiType\022#\n\nmonster_ai\030\002 \001(\0132\017.gmtl."
+    "MonsterAi\0224\n\023confused_monster_ai\030\003 \001(\0132\027"
+    ".gmtl.ConfusedMonsterAi\"\213\002\n\005Actor\022\t\n\001x\030\001"
+    " \002(\005\022\t\n\001y\030\002 \002(\005\022\n\n\002ch\030\003 \002(\005\022\032\n\005color\030\004 \002"
+    "(\0132\013.gmtl.Color\022\014\n\004name\030\005 \002(\014\022\016\n\006blocks\030"
+    "\006 \002(\005\022 \n\010attacker\030\007 \001(\0132\016.gmtl.Attacker\022"
+    "\"\n\tcontainer\030\010 \001(\0132\017.gmtl.Container\022(\n\014d"
+    "estructible\030\t \001(\0132\022.gmtl.Destructible\022 \n"
+    "\010pickable\030\n \001(\0132\016.gmtl.Pickable\022\024\n\002ai\030\013 "
+    "\001(\0132\010.gmtl.Ai\"/\n\003Log\022\014\n\004text\030\001 \002(\014\022\032\n\005co"
+    "lor\030\002 \002(\0132\013.gmtl.Color\"\227\003\n\004Game\022\r\n\005level"
+    "\030\001 \002(\005\022\033\n\003map\030\002 \002(\0132\016.gmtl.Game.Map\022!\n\006p"
+    "layer\030\003 \001(\0132\021.gmtl.Game.Player\022!\n\006stairs"
+    "\030\004 \001(\0132\021.gmtl.Game.Stairs\022!\n\006actors\030\005 \001("
+    "\0132\021.gmtl.Game.Actors\022\035\n\004logs\030\006 \001(\0132\017.gmt"
+    "l.Game.Logs\032I\n\003Map\022\r\n\005width\030\001 \002(\005\022\016\n\006hei"
+    "ght\030\002 \002(\005\022\014\n\004seed\030\003 \002(\005\022\025\n\rexplored_tile"
+    "\030\004 \003(\005\032$\n\006Player\022\032\n\005actor\030\001 \002(\0132\013.gmtl.A"
+    "ctor\032$\n\006Stairs\022\032\n\005actor\030\001 \002(\0132\013.gmtl.Act"
+    "or\032$\n\006Actors\022\032\n\005actor\030\001 \003(\0132\013.gmtl.Actor"
+    "\032\036\n\004Logs\022\026\n\003log\030\001 \003(\0132\t.gmtl.Log*+\n\020Dest"
+    "ructibleType\022\013\n\007MONSTER\020\000\022\n\n\006PLAYER\020\001*J\n"
+    "\014PickableType\022\n\n\006HEALER\020\000\022\022\n\016LIGHTNING_B"
+    "OLT\020\001\022\014\n\010CONFUSER\020\002\022\014\n\010FIREBALL\020\003*@\n\006AiT"
+    "ype\022\016\n\nMONSTER_AI\020\000\022\027\n\023CONFUSED_MONSTER_"
+    "AI\020\001\022\r\n\tPLAYER_AI\020\002", 1819);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "gmtl.proto", &protobuf_RegisterTypes);
   Color::default_instance_ = new Color();
@@ -1176,6 +1177,7 @@ void Attacker::Swap(Attacker* other) {
 
 #ifndef _MSC_VER
 const int Container::kSizeFieldNumber;
+const int Container::kGoldFieldNumber;
 const int Container::kInventorySizeFieldNumber;
 const int Container::kActorFieldNumber;
 #endif  // !_MSC_VER
@@ -1197,6 +1199,7 @@ Container::Container(const Container& from)
 void Container::SharedCtor() {
   _cached_size_ = 0;
   size_ = 0;
+  gold_ = 0;
   inventory_size_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -1234,6 +1237,7 @@ Container* Container::New() const {
 void Container::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     size_ = 0;
+    gold_ = 0;
     inventory_size_ = 0;
   }
   actor_.Clear();
@@ -1258,12 +1262,28 @@ bool Container::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(16)) goto parse_inventory_size;
+        if (input->ExpectTag(16)) goto parse_gold;
         break;
       }
 
-      // required int32 inventory_size = 2;
+      // required int32 gold = 2;
       case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_gold:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &gold_)));
+          set_has_gold();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(24)) goto parse_inventory_size;
+        break;
+      }
+
+      // required int32 inventory_size = 3;
+      case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_inventory_size:
@@ -1274,12 +1294,12 @@ bool Container::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(26)) goto parse_actor;
+        if (input->ExpectTag(34)) goto parse_actor;
         break;
       }
 
-      // repeated .gmtl.Actor actor = 3;
-      case 3: {
+      // repeated .gmtl.Actor actor = 4;
+      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_actor:
@@ -1288,7 +1308,7 @@ bool Container::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(26)) goto parse_actor;
+        if (input->ExpectTag(34)) goto parse_actor;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -1316,15 +1336,20 @@ void Container::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->size(), output);
   }
 
-  // required int32 inventory_size = 2;
-  if (has_inventory_size()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->inventory_size(), output);
+  // required int32 gold = 2;
+  if (has_gold()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->gold(), output);
   }
 
-  // repeated .gmtl.Actor actor = 3;
+  // required int32 inventory_size = 3;
+  if (has_inventory_size()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->inventory_size(), output);
+  }
+
+  // repeated .gmtl.Actor actor = 4;
   for (int i = 0; i < this->actor_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      3, this->actor(i), output);
+      4, this->actor(i), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -1340,16 +1365,21 @@ void Container::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->size(), target);
   }
 
-  // required int32 inventory_size = 2;
-  if (has_inventory_size()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->inventory_size(), target);
+  // required int32 gold = 2;
+  if (has_gold()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->gold(), target);
   }
 
-  // repeated .gmtl.Actor actor = 3;
+  // required int32 inventory_size = 3;
+  if (has_inventory_size()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->inventory_size(), target);
+  }
+
+  // repeated .gmtl.Actor actor = 4;
   for (int i = 0; i < this->actor_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        3, this->actor(i), target);
+        4, this->actor(i), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -1370,7 +1400,14 @@ int Container::ByteSize() const {
           this->size());
     }
 
-    // required int32 inventory_size = 2;
+    // required int32 gold = 2;
+    if (has_gold()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->gold());
+    }
+
+    // required int32 inventory_size = 3;
     if (has_inventory_size()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
@@ -1378,7 +1415,7 @@ int Container::ByteSize() const {
     }
 
   }
-  // repeated .gmtl.Actor actor = 3;
+  // repeated .gmtl.Actor actor = 4;
   total_size += 1 * this->actor_size();
   for (int i = 0; i < this->actor_size(); i++) {
     total_size +=
@@ -1416,6 +1453,9 @@ void Container::MergeFrom(const Container& from) {
     if (from.has_size()) {
       set_size(from.size());
     }
+    if (from.has_gold()) {
+      set_gold(from.gold());
+    }
     if (from.has_inventory_size()) {
       set_inventory_size(from.inventory_size());
     }
@@ -1436,7 +1476,7 @@ void Container::CopyFrom(const Container& from) {
 }
 
 bool Container::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
 
   for (int i = 0; i < actor_size(); i++) {
     if (!this->actor(i).IsInitialized()) return false;
@@ -1447,6 +1487,7 @@ bool Container::IsInitialized() const {
 void Container::Swap(Container* other) {
   if (other != this) {
     std::swap(size_, other->size_);
+    std::swap(gold_, other->gold_);
     std::swap(inventory_size_, other->inventory_size_);
     actor_.Swap(&other->actor_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);

@@ -362,17 +362,24 @@ class Container : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 size() const;
   inline void set_size(::google::protobuf::int32 value);
 
-  // required int32 inventory_size = 2;
+  // required int32 gold = 2;
+  inline bool has_gold() const;
+  inline void clear_gold();
+  static const int kGoldFieldNumber = 2;
+  inline ::google::protobuf::int32 gold() const;
+  inline void set_gold(::google::protobuf::int32 value);
+
+  // required int32 inventory_size = 3;
   inline bool has_inventory_size() const;
   inline void clear_inventory_size();
-  static const int kInventorySizeFieldNumber = 2;
+  static const int kInventorySizeFieldNumber = 3;
   inline ::google::protobuf::int32 inventory_size() const;
   inline void set_inventory_size(::google::protobuf::int32 value);
 
-  // repeated .gmtl.Actor actor = 3;
+  // repeated .gmtl.Actor actor = 4;
   inline int actor_size() const;
   inline void clear_actor();
-  static const int kActorFieldNumber = 3;
+  static const int kActorFieldNumber = 4;
   inline const ::gmtl::Actor& actor(int index) const;
   inline ::gmtl::Actor* mutable_actor(int index);
   inline ::gmtl::Actor* add_actor();
@@ -385,17 +392,20 @@ class Container : public ::google::protobuf::Message {
  private:
   inline void set_has_size();
   inline void clear_has_size();
+  inline void set_has_gold();
+  inline void clear_has_gold();
   inline void set_has_inventory_size();
   inline void clear_has_inventory_size();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::int32 size_;
-  ::google::protobuf::int32 inventory_size_;
+  ::google::protobuf::int32 gold_;
   ::google::protobuf::RepeatedPtrField< ::gmtl::Actor > actor_;
+  ::google::protobuf::int32 inventory_size_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
 
   friend void  protobuf_AddDesc_gmtl_2eproto();
   friend void protobuf_AssignDesc_gmtl_2eproto();
@@ -2325,15 +2335,37 @@ inline void Container::set_size(::google::protobuf::int32 value) {
   size_ = value;
 }
 
-// required int32 inventory_size = 2;
-inline bool Container::has_inventory_size() const {
+// required int32 gold = 2;
+inline bool Container::has_gold() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void Container::set_has_inventory_size() {
+inline void Container::set_has_gold() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void Container::clear_has_inventory_size() {
+inline void Container::clear_has_gold() {
   _has_bits_[0] &= ~0x00000002u;
+}
+inline void Container::clear_gold() {
+  gold_ = 0;
+  clear_has_gold();
+}
+inline ::google::protobuf::int32 Container::gold() const {
+  return gold_;
+}
+inline void Container::set_gold(::google::protobuf::int32 value) {
+  set_has_gold();
+  gold_ = value;
+}
+
+// required int32 inventory_size = 3;
+inline bool Container::has_inventory_size() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Container::set_has_inventory_size() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Container::clear_has_inventory_size() {
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void Container::clear_inventory_size() {
   inventory_size_ = 0;
@@ -2347,7 +2379,7 @@ inline void Container::set_inventory_size(::google::protobuf::int32 value) {
   inventory_size_ = value;
 }
 
-// repeated .gmtl.Actor actor = 3;
+// repeated .gmtl.Actor actor = 4;
 inline int Container::actor_size() const {
   return actor_.size();
 }

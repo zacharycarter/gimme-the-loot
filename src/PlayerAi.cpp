@@ -58,7 +58,7 @@ bool PlayerAi::moveOrAttack(Actor *owner, int targetx, int targety) {
       || actor->pickable;
     if (corpseOrItem
 	&& actor->x == targetx && actor->y == targety) {
-      engine.gui->logEntry(TCODColor::lightGrey,"There's a %s here",actor->name);
+      engine.gui->logEntry(TCODColor::lightGrey,"there's a %s here",actor->name);
     }
   }
   owner->x=targetx;
@@ -109,17 +109,17 @@ void PlayerAi::handleActionKey(Actor *owner, int ascii) {
 	if (actor->pickable && actor->x == owner->x && actor->y == owner->y) {
 	  if (actor->pickable->pick(actor, owner)) {
 	    found = true;
-	    engine.gui->logEntry(TCODColor::lightGrey, "You pick up the %s.",
+	    engine.gui->logEntry(TCODColor::lightGrey, "you pick up the %s.",
 				actor->name);
 	    break;
 	  } else if (!found) {
 	    found = true;
-	    engine.gui->logEntry(TCODColor::red, "Your inventory is full.");
+	    engine.gui->logEntry(TCODColor::red, "your inventory is full.");
 	  }
 	}
       }
       if (!found) {
-	engine.gui->logEntry(TCODColor::lightGrey, "There's nothing here to interact with.");
+	engine.gui->logEntry(TCODColor::lightGrey, "there's nothing here to interact with.");
       }
       engine.gameStatus = Engine::NEW_TURN;
     }

@@ -10,8 +10,9 @@ message Attacker {
 }
 message Container {
   required int32 size = 1;
-  required int32 inventory_size = 2;
-  repeated Actor actor = 3;
+  required int32 gold = 2;
+  required int32 inventory_size = 3;
+  repeated Actor actor = 4;
 }
 enum DestructibleType {
   MONSTER = 0;

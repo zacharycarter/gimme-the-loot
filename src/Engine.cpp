@@ -27,18 +27,18 @@ void Engine::reinit() {
 
 void Engine::init() {
   player = new Actor(40,25,'@',"player",TCODColor::white);
-  player->destructible=new PlayerDestructible(30,2,"your cadaver");
+  player->destructible=new PlayerDestructible(30,2,"your corpse");
   player->attacker=new Attacker(5);
   player->ai = new PlayerAi();
   player->container = new Container(26);
   actors.push(player);
-  stairs = new Actor(0,0,'>',"stairs",TCODColor::white);
+  stairs = new Actor(0,0,'>',"stairs",TCODColor(196,77,88));
   stairs->blocks = false;
   stairs->fovOnly = false;
   actors.push(stairs);
   map = new Map(80,43);
   map->init(true);
-  gui->logEntry(TCODColor::red,"Welcome!");
+  gui->logEntry(TCODColor::green,"welcome!");
   gameStatus = STARTUP;
 }
 
@@ -76,8 +76,10 @@ void Engine::render() {
   }
   player->render();
   gui->render();
-  TCODConsole::root->print(1, screenHeight-2, "HP : %d/%d", 
-			   (int)player->destructible->hp,(int)player->destructible->maxHp);
+
+  TCODConsole::root->setDefaultForeground(TCODColor::gold);
+  TCODConsole::root->print(1, screenHeight-2, "Gold : %d", 
+			   (int)player->container->gold);
 }
 
 void Engine::nextLevel() {
