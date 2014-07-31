@@ -241,10 +241,12 @@ IF (PROTOBUF_LIBRARIES AND PROTOBUF_INCLUDE_DIR)
 ENDIF (PROTOBUF_LIBRARIES AND PROTOBUF_INCLUDE_DIR)
 
 FIND_PATH(PROTOBUF_INCLUDE_DIR google/protobuf/service.h 
-          PATHS "/usr/include"
-                "/usr/local/include"
-                "/usr/include/google"
-                "/usr/local/include/google"
+  PATHS
+  "../include"
+  "/usr/include"
+  "/usr/local/include"
+  "/usr/include/google"
+  "/usr/local/include/google"
 )
 
 # Google's provided vcproj files generate libraries with a "lib"
@@ -255,22 +257,26 @@ IF(WIN32)
 ENDIF()
 
 FIND_LIBRARY(PROTOBUF_LIBRARY NAMES protobuf
-             PATHS "/usr/lib"
-                   "/usr/local/lib"
-                   "/usr/local/lib/google"
-             DOC "The Google Protocol Buffers Library"
+  PATHS
+  "../lib"
+  "/usr/lib"
+  "/usr/local/lib"
+  "/usr/local/lib/google"
+  DOC "The Google Protocol Buffers Library"
 )
 FIND_LIBRARY(PROTOBUF_PROTOC_LIBRARY NAMES protoc
-             PATHS "/usr/lib"
-                   "/usr/local/lib"
-                   "/usr/local/lib/google"
-             DOC "The Google Protocol Buffers Compiler Library"
+  PATHS
+  "../lib"
+  "/usr/lib"
+  "/usr/local/lib"
+  "/usr/local/lib/google"
+  DOC "The Google Protocol Buffers Compiler Library"
 )
 FIND_PROGRAM(PROTOBUF_PROTOC_EXECUTABLE NAMES protoc
-             PATHS "/bin"
-                   "/usr/bin"
-                   "/usr/local/bin"
-             DOC "The Google Protocol Buffers Compiler"
+  PATHS "/bin"
+  "/usr/bin"
+  "/usr/local/bin"
+  DOC "The Google Protocol Buffers Compiler"
 )
 
 IF (PROTOBUF_INCLUDE_DIR AND PROTOBUF_LIBRARY)
