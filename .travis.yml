@@ -1,7 +1,7 @@
 language: cpp
 compiler:
   - gcc
-before_scrit:
+before_script:
   - mkdir build
   - cd build
   - cmake ..
