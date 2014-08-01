@@ -95,7 +95,7 @@ find_package (Libprotobuf REQUIRED)
 add_executable (gimme-the-loot ${HDRS} ${SRCS})
 set_target_properties(gimme-the-loot PROPERTIES LINKER_LANGUAGE CXX)
 
-target_link_libraries (
+target_link_libraries (gimme-the-loot
   ${LIBTCOD_LIBRARIES}
   ${LIBTCODXX_LIBRARIES}
   ${PROTOBUF_LIBRARIES}
