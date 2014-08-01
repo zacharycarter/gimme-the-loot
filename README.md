@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/carterza/gimme-the-loot.svg?branch=master)](https://travis-ci.org/carterza/gimme-the-loot)
