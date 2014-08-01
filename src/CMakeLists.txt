@@ -92,13 +92,14 @@ include_directories (${LIBTCODXX_INCLUDE_DIRS})
 
 find_package (Libprotobuf REQUIRED)
 
-link_libraries (
+add_executable (gimme-the-loot ${HDRS} ${SRCS})
+set_target_properties(gimme-the-loot PROPERTIES LINKER_LANGUAGE CXX)
+
+target_link_libraries (
   ${LIBTCOD_LIBRARIES}
   ${LIBTCODXX_LIBRARIES}
   ${PROTOBUF_LIBRARIES}
 )
-
-add_executable (gimme-the-loot ${HDRS} ${SRCS})
 
 ADD_CUSTOM_COMMAND(
   TARGET gimme-the-loot
