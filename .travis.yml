@@ -1,6 +1,8 @@
 language: cpp
 compiler:
   - gcc
+install:
+  - libsdl1.2debian-all
 before_script:
   - mkdir build
   - cd build
